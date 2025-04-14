@@ -1,5 +1,5 @@
 ﻿namespace Content.Features.StorageModule.Scripts {
     public interface IStorageFactory {
-        public IStorage GetStorage();
+        public IStorage CreateStorage(IStorage.IStorageSettings storageSettings);
     }
 }

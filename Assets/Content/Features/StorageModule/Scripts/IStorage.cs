@@ -14,5 +14,12 @@ namespace Content.Features.StorageModule.Scripts {
         public void RemoveItems(List<Item> items);
 
         public void RemoveAllItems();
+        float GetCurrentCapacity();
+        float GetMaxCapacity();
+
+        public interface IStorageSettings
+        {
+            public float MaxCapacity { get; }
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace Content.Features.AIModule.Scripts.Entity {
         [SerializeField] private EntityContext _entityContext;
         [SerializeField] private EntityType _entityType;
         [SerializeField] private bool _isAggressive;
+        public StandardStorage.StorageSettings StorageSettings;
         
         private IEntityBehaviour _currentBehaviour;
         private IEntityDataService _entityDataService;
@@ -27,7 +28,7 @@ namespace Content.Features.AIModule.Scripts.Entity {
             _entityContext.EntityDamageable = GetComponent<IDamageable>();
             _entityContext.EntityData = _entityDataService.GetEntityData(_entityType);
             _entityContext.EntityDamageable.SetHealth(_entityContext.EntityData.StartHealth);
-            _entityContext.Storage = _storageFactory.GetStorage();
+            _entityContext.Storage = _storageFactory.CreateStorage(StorageSettings);
             
             SetDefaultBehaviour();
         }

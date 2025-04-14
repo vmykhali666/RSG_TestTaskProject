@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 21030576930130470, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
+      propertyPath: StorageSettings._maxCapacity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 21030576930130470, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
       propertyPath: _entityContext.EntityAnimator
       value: 
       objectReference: {fileID: 1094867714571588053}
