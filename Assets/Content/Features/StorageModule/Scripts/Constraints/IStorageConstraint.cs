@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Content.Features.StorageModule.Scripts
+namespace Content.Features.StorageModule.Scripts.Constraints
 {
     public interface IStorageConstraint
     {

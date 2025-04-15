@@ -8,15 +8,17 @@ namespace Content.Features.StorageModule.Scripts
 {
     public class StandardStorage : IStorage
     {
-        private readonly List<Item> _items = new();
-        private float _maxCapacity;
+        private readonly List<Item> _items;
+        private readonly float _maxCapacity;
 
         public event Action<Item> OnItemAdded;
         public event Action<Item> OnItemRemoved;
 
-        public StandardStorage(IStorage.IStorageSettings storageSettings)
+
+        public StandardStorage(StorageSettings storageSettings)
         {
             _maxCapacity = storageSettings.MaxCapacity;
+            _items = new List<Item>();
         }
 
         public List<Item> GetAllItems() =>
@@ -66,14 +68,6 @@ namespace Content.Features.StorageModule.Scripts
         public float GetMaxCapacity()
         {
             return _maxCapacity;
-        }
-
-        [Serializable]
-        public class StorageSettings : IStorage.IStorageSettings
-        {
-            [Range(0, 100)]
-            [SerializeField] private float _maxCapacity = 100f;
-            public float MaxCapacity => _maxCapacity;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Content.Features.LootModule.Scripts;
 using Content.Features.StorageModule.Scripts;
+using Content.Features.StorageModule.Scripts.Constraints;
 using UnityEngine;
 
 namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours

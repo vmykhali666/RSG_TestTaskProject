@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Content.Features.StorageModule.Scripts
+namespace Content.Features.StorageModule.Scripts.Constraints
 {
     public class CapacityStorageConstraint : IStorageConstraint
     {

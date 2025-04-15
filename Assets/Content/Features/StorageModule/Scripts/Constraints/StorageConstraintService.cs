@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Content.Features.LootModule.Scripts;
 
-namespace Content.Features.StorageModule.Scripts
+namespace Content.Features.StorageModule.Scripts.Constraints
 {
     public class StorageConstraintService : IStorageConstraintService
     {
