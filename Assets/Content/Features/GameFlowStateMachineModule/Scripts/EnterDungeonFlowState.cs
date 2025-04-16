@@ -12,7 +12,8 @@ namespace Content.Features.GameFlowStateMachineModule.Scripts {
         public override void Enter() {
             List<string> enabledScenes = new() {
                 SceneInBuild.GlobalScene, 
-                SceneInBuild.DungeonScene
+                SceneInBuild.DungeonScene,
+                SceneInBuild.UIScene,
             };
         
             _sceneLoaderService.LoadScenesAsync(enabledScenes, SceneInBuild.DungeonScene, true);

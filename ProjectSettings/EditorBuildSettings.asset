@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Content/Global/GameResources/Scenes/DungeonScene.unity
     guid: f188b69db2dbb8a4f89f8c612c36a1a4
+  - enabled: 0
+    path: Assets/Content/Global/GameResources/Scenes/UIScene.unity
+    guid: 422e7b5290fc1457c90de39929de9480
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 24694a4f7effdc04abb2795c6ac95492, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -15,6 +15,16 @@ MonoBehaviour:
   m_GroupName: Prefabs
   m_GUID: a002e2762f457b6429e0da2b7b348364
   m_SerializeEntries:
+  - m_GUID: 180ffb12aa2144298a0f80a3767d74a5
+    m_Address: InventoryView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1adf39d402eae4705a240e000d57f0a8
+    m_Address: InventoryItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 572e3e85a587c984fbd838af01028e49
     m_Address: Player
     m_ReadOnly: 0
@@ -35,8 +45,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a73cbfdac24c545ec992ac0724273d6e
+    m_Address: InventoryToggle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a799dd6b431e343fab79ad7cd31f7a4a
+    m_Address: InventoryCell
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d2116e2d8ec6e3f4fada49c9b418c674
     m_Address: PlayerCamera
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0df9adc2639dfd4b9534d8d394dbb45
+    m_Address: FX_SunGlow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7211f4c8c7de4cc1a45779a0a7b2bd7
+    m_Address: InventoryBadge
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

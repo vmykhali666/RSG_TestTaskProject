@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 422e7b5290fc1457c90de39929de9480
+    m_Address: UIScene
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ce42b831adb7144683f3acb1275be34
     m_Address: SurfaceScene
     m_ReadOnly: 0

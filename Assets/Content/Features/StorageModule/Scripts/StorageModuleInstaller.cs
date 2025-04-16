@@ -1,4 +1,5 @@
 ﻿using Content.Features.StorageModule.Scripts.Constraints;
+using Content.Features.StorageModule.Scripts.Signals;
 using Core.AssetLoaderModule.Core.Scripts;
 using Global.Scripts.Generated;
 using Zenject;
@@ -14,6 +15,8 @@ namespace Content.Features.StorageModule.Scripts
             _assetLoaderService =
                 Container.Resolve<IAddressablesAssetLoaderService>();
 
+            BindSignals();
+
             BindConfigs(_assetLoaderService);
 
             BindFactories();
@@ -23,13 +26,21 @@ namespace Content.Features.StorageModule.Scripts
             BindServices();
         }
 
+        private void BindSignals()
+        {
+            Container.DeclareSignal<StorageAddItemSignal>();
+
+            Container.DeclareSignal<StorageRemoveItemSignal>();
+        }
+
         private void BindServices()
         {
             Container.Bind<IStorageConstraintService>()
                 .To<StorageConstraintService>()
                 .AsSingle();
 
-            Container.BindInterfacesAndSelfTo<PlayerStorageService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerStorageService>()
+                .AsSingle().NonLazy();
         }
 
         private void BindFactories()

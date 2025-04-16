@@ -10,5 +10,6 @@ namespace Content.Features.StorageModule.Scripts {
         public Sprite Icon;
         public int Price;
         public float Weight;
+        public bool IsNewItem = true;
     }
 }

@@ -13,6 +13,7 @@ namespace Content.Features.GameFlowStateMachineModule.Scripts {
             List<string> enabledScenes = new() {
                 SceneInBuild.GlobalScene,
                 SceneInBuild.SurfaceScene,
+                SceneInBuild.UIScene,
             };
 
             _sceneLoaderService.LoadScenesAsync(enabledScenes, SceneInBuild.SurfaceScene, true);

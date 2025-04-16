@@ -9,6 +9,7 @@ namespace Content.Features.GameBootstrapModule.Scripts.ProjectDI {
         fileName = nameof(ProjectContextInstaller) + "_Default", order = 0)]
     public class ProjectContextInstaller : ScriptableObjectInstaller<ProjectContextInstaller> {
         public override void InstallBindings() {
+            SignalBusInstaller.Install(Container);
             SceneLoaderServiceModuleInstaller.Install(Container);
             GameFlowStateMachineInstaller.Install(Container);
             AssetLoaderInstaller.Install(Container);
