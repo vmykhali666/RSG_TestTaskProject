@@ -8,7 +8,6 @@ namespace Content.Features.StorageModule.Scripts
         public Sprite Icon { get; private set; }
         public int Price { get; private set; }
         public float Weight { get; private set; }
-
         public bool IsNewItem { get; private set; }
 
         public Item(string name, Sprite icon, int price, float weight, bool isNewItem = true)

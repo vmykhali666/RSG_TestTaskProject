@@ -6,8 +6,8 @@ namespace Global.Scripts.Generated {
             "StorageSettings_Default",
             "InteractConfiguration",
             "EntitiesConfiguration_Default",
-            "ItemsConfiguration_Default",
             "GamePrefabsConfiguration",
+            "ItemsConfiguration_Default",
             "BootstrapScene",
             "GlobalScene",
             "UIScene",
@@ -15,6 +15,7 @@ namespace Global.Scripts.Generated {
             "DungeonScene",
             "InventoryView",
             "InventoryItem",
+            "PlayerWallet",
             "InventoryToggle",
             "InventoryCell",
             "HealthBar",
@@ -32,14 +33,14 @@ namespace Global.Scripts.Generated {
             public const System.String StorageSettings_Default = "StorageSettings_Default"; 
             public const System.String InteractConfiguration = "InteractConfiguration"; 
             public const System.String EntitiesConfiguration_Default = "EntitiesConfiguration_Default"; 
-            public const System.String ItemsConfiguration_Default = "ItemsConfiguration_Default"; 
             public const System.String GamePrefabsConfiguration = "GamePrefabsConfiguration"; 
+            public const System.String ItemsConfiguration_Default = "ItemsConfiguration_Default"; 
             public static List<string> AllKeys = new() {
                 "StorageSettings_Default",
                 "InteractConfiguration",
                 "EntitiesConfiguration_Default",
-                "ItemsConfiguration_Default",
                 "GamePrefabsConfiguration",
+                "ItemsConfiguration_Default",
             }; 
         } 
 
@@ -61,6 +62,7 @@ namespace Global.Scripts.Generated {
         public static class UI { 
             public const System.String InventoryView = "InventoryView"; 
             public const System.String InventoryItem = "InventoryItem"; 
+            public const System.String PlayerWallet = "PlayerWallet"; 
             public const System.String InventoryToggle = "InventoryToggle"; 
             public const System.String InventoryCell = "InventoryCell"; 
             public const System.String HealthBar = "HealthBar"; 
@@ -70,6 +72,7 @@ namespace Global.Scripts.Generated {
             public static List<string> AllKeys = new() {
                 "InventoryView",
                 "InventoryItem",
+                "PlayerWallet",
                 "InventoryToggle",
                 "InventoryCell",
                 "HealthBar",

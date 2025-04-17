@@ -5,7 +5,10 @@
         public ItemFactory(ItemsConfiguration itemsConfiguration) =>
             _itemsConfiguration = itemsConfiguration;
 
-        public Item GetItem(ItemType itemType) =>
-            new (_itemsConfiguration.GetItemConfiguration(itemType));
+        public Item GetItem(ItemType itemType)
+        {
+            var itemConfiguration = _itemsConfiguration.GetItemConfiguration(itemType);
+            return itemConfiguration.CreateItem();
+        }
     }
 }
