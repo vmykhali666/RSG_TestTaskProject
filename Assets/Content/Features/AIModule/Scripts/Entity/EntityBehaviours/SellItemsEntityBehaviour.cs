@@ -1,11 +1,19 @@
 ﻿using System;
+using Content.Features.PlayerData.Scripts;
 using Content.Features.ShopModule.Scripts;
 using UnityEngine;
 
 namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
     public class SellItemsEntityBehaviour : IEntityBehaviour {
+        private readonly BasePersistor<PlayerPersistentData> _playerDataPersistor;
         private EntityContext _entityContext;
         private Trader _trader;
+        
+        
+        public SellItemsEntityBehaviour(BasePersistor<PlayerPersistentData> playerPersistor)
+        {
+            _playerDataPersistor = playerPersistor;
+        }
         
         public event Action OnBehaviorEnd;
         public void InitContext(EntityContext entityContext) =>
@@ -36,7 +44,13 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
             Vector3.Distance(_entityContext.EntityDamageable.Position, _trader.transform.position) <= _entityContext.EntityData.InteractDistance;
 
         private void SellItems() {
-            _trader.SellAllItemsFromStorage(_entityContext.Storage);
+            var currencyAmount = _trader.SellAllItemsFromStorage(_entityContext.Storage);
+            //TODO: works with persistor from someService and remove it from here and fire signal instead of this code
+            var playerData = _playerDataPersistor.GetDataModel();
+            playerData.Currency += currencyAmount;
+            _playerDataPersistor.UpdateModel(playerData);
+            _playerDataPersistor.SaveData();
+            
             StopMoving();
             OnBehaviorEnd?.Invoke();
         }

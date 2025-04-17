@@ -7,11 +7,16 @@ namespace Content.Features.UIModule.Scripts
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<UIRootReferences>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            
             DeclareSignals();
-            BindUI();
+            BindInventoryUI();
+            BindHealthBar();
         }
 
-        private void BindUI()
+        private void BindInventoryUI()
         {
             Container.BindInterfacesAndSelfTo<InventoryView>()
                 .FromComponentInHierarchy()
@@ -20,6 +25,12 @@ namespace Content.Features.UIModule.Scripts
             Container.BindInterfacesAndSelfTo<InventoryPresenter>().AsSingle();
 
             Container.BindInterfacesTo<InventoryToggle>().FromComponentInHierarchy().AsSingle();
+        }
+
+        private void BindHealthBar()
+        {
+            Container.BindInterfacesAndSelfTo<HealthBarInitializer>()
+                .AsSingle();
         }
 
         private void DeclareSignals()

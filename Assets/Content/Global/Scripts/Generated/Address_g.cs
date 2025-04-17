@@ -15,15 +15,17 @@ namespace Global.Scripts.Generated {
             "DungeonScene",
             "InventoryView",
             "InventoryItem",
+            "InventoryToggle",
+            "InventoryCell",
+            "HealthBar",
+            "UIRootConvas",
+            "FX_SunGlow",
+            "InventoryBadge",
             "Player",
             "Potion",
             "Standard_Enemy",
             "Book",
-            "InventoryToggle",
-            "InventoryCell",
             "PlayerCamera",
-            "FX_SunGlow",
-            "InventoryBadge",
             "Seller",
         }; 
         public static class Configurations { 
@@ -56,31 +58,40 @@ namespace Global.Scripts.Generated {
             }; 
         } 
 
-        public static class Prefabs { 
+        public static class UI { 
             public const System.String InventoryView = "InventoryView"; 
             public const System.String InventoryItem = "InventoryItem"; 
+            public const System.String InventoryToggle = "InventoryToggle"; 
+            public const System.String InventoryCell = "InventoryCell"; 
+            public const System.String HealthBar = "HealthBar"; 
+            public const System.String UIRootConvas = "UIRootConvas"; 
+            public const System.String FX_SunGlow = "FX_SunGlow"; 
+            public const System.String InventoryBadge = "InventoryBadge"; 
+            public static List<string> AllKeys = new() {
+                "InventoryView",
+                "InventoryItem",
+                "InventoryToggle",
+                "InventoryCell",
+                "HealthBar",
+                "UIRootConvas",
+                "FX_SunGlow",
+                "InventoryBadge",
+            }; 
+        } 
+
+        public static class Prefabs { 
             public const System.String Player = "Player"; 
             public const System.String Potion = "Potion"; 
             public const System.String Standard_Enemy = "Standard_Enemy"; 
             public const System.String Book = "Book"; 
-            public const System.String InventoryToggle = "InventoryToggle"; 
-            public const System.String InventoryCell = "InventoryCell"; 
             public const System.String PlayerCamera = "PlayerCamera"; 
-            public const System.String FX_SunGlow = "FX_SunGlow"; 
-            public const System.String InventoryBadge = "InventoryBadge"; 
             public const System.String Seller = "Seller"; 
             public static List<string> AllKeys = new() {
-                "InventoryView",
-                "InventoryItem",
                 "Player",
                 "Potion",
                 "Standard_Enemy",
                 "Book",
-                "InventoryToggle",
-                "InventoryCell",
                 "PlayerCamera",
-                "FX_SunGlow",
-                "InventoryBadge",
                 "Seller",
             }; 
         } 

@@ -117,6 +117,7 @@ MonoBehaviour:
       Speed: 0
   _entityType: 1
   _isAggressive: 0
+  _storageSettings: {fileID: 0}
 --- !u!114 &2274543699586035796
 MonoBehaviour:
   m_ObjectHideFlags: 0

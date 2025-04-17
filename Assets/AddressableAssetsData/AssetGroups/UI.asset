@@ -10,38 +10,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Prefabs
+  m_Name: UI
   m_EditorClassIdentifier: 
-  m_GroupName: Prefabs
-  m_GUID: a002e2762f457b6429e0da2b7b348364
+  m_GroupName: UI
+  m_GUID: 269a099c1153a47e8993f2456d5be664
   m_SerializeEntries:
-  - m_GUID: 572e3e85a587c984fbd838af01028e49
-    m_Address: Player
+  - m_GUID: 180ffb12aa2144298a0f80a3767d74a5
+    m_Address: InventoryView
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5afb6a1742ca3f241ae220c184c97080
-    m_Address: Potion
+  - m_GUID: 1adf39d402eae4705a240e000d57f0a8
+    m_Address: InventoryItem
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 87edaa8f20903734c8c21f7bf0563569
-    m_Address: Standard_Enemy
+  - m_GUID: a73cbfdac24c545ec992ac0724273d6e
+    m_Address: InventoryToggle
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8fcc8ae95cbe7d547ba9e5ad187be870
-    m_Address: Book
+  - m_GUID: a799dd6b431e343fab79ad7cd31f7a4a
+    m_Address: InventoryCell
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d2116e2d8ec6e3f4fada49c9b418c674
-    m_Address: PlayerCamera
+  - m_GUID: c22eb63d2ceb94a12ae12accbc8581f5
+    m_Address: HealthBar
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ffc416e34bfef9744976ee9bc9d68502
-    m_Address: Seller
+  - m_GUID: edbe84d3dd0404a0c87b9a47041a8632
+    m_Address: UIRootConvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0df9adc2639dfd4b9534d8d394dbb45
+    m_Address: FX_SunGlow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7211f4c8c7de4cc1a45779a0a7b2bd7
+    m_Address: InventoryBadge
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -49,5 +59,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: cdfed901c846f724cbd82acfff6f8f62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 6b615ed5a68680f49b815e34241fde58, type: 2}
-    - {fileID: 11400000, guid: e823afdf08c9c034ab5acb8c6f104e47, type: 2}
+    - {fileID: 11400000, guid: 9787f8297e4f0471b98896d42e2a5d6a, type: 2}
+    - {fileID: 11400000, guid: c9789a0b95e05403197dc6bf28658a75, type: 2}

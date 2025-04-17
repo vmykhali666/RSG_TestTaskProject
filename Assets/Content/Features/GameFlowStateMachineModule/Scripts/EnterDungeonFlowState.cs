@@ -2,23 +2,29 @@
 using Core.SceneLoaderServiceModule.Scripts;
 using Global.Scripts.Generated;
 
-namespace Content.Features.GameFlowStateMachineModule.Scripts {
-    public class EnterDungeonFlowState : GameFlowStateBase {
+namespace Content.Features.GameFlowStateMachineModule.Scripts
+{
+    public class EnterDungeonFlowState : GameFlowStateBase
+    {
         private readonly ISceneLoaderService _sceneLoaderService;
 
         public EnterDungeonFlowState(ISceneLoaderService sceneLoaderService) =>
             _sceneLoaderService = sceneLoaderService;
 
-        public override void Enter() {
-            List<string> enabledScenes = new() {
-                SceneInBuild.GlobalScene, 
-                SceneInBuild.DungeonScene,
+        public override void Enter()
+        {
+            List<string> enabledScenes = new()
+            {
+                SceneInBuild.GlobalScene,
                 SceneInBuild.UIScene,
+                SceneInBuild.DungeonScene,
             };
-        
+
             _sceneLoaderService.LoadScenesAsync(enabledScenes, SceneInBuild.DungeonScene, true);
         }
 
-        public override void Exit() { }
+        public override void Exit()
+        {
+        }
     }
 }
