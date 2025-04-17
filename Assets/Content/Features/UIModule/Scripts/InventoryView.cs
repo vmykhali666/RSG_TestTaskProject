@@ -95,17 +95,14 @@ namespace Content.Features.UIModule.Scripts
         private void OnItemRemove(ReorderableList.ReorderableListEventStruct arg0)
         {
             Debug.Log($"Removed item at index {arg0.FromIndex}");
-            OnItemRemoved?.Invoke(_spawnedItems[arg0.FromIndex]);
+            // OnItemRemoved?.Invoke(_spawnedItems[arg0.FromIndex]);
         }
 
         public void SetItems(List<Item> items)
         {
             ClearItems();
-
-            foreach (Item item in items)
-            {
-                CreateItem(item);
-            }
+            
+            items.ForEach(CreateItem);
         }
 
         private void CreateItem(Item item)
@@ -117,10 +114,7 @@ namespace Content.Features.UIModule.Scripts
 
         private void ClearItems()
         {
-            foreach (InventoryItem item in _spawnedItems)
-            {
-                Destroy(item.gameObject);
-            }
+           _spawnedItems.ForEach(item => Destroy(item.gameObject));
 
             _spawnedItems.Clear();
         }
@@ -137,11 +131,7 @@ namespace Content.Features.UIModule.Scripts
 
         private void ClearCells()
         {
-            foreach (GameObject cell in _spawnedCells)
-            {
-                Destroy(cell);
-            }
-
+            _spawnedCells.ForEach(Destroy);
             _spawnedCells.Clear();
         }
 

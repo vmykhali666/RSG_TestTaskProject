@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d88efa43019b4d23838631d456ca0f2
+    m_Address: PlayerWallet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a73cbfdac24c545ec992ac0724273d6e
     m_Address: InventoryToggle
     m_ReadOnly: 0

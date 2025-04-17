@@ -1,18 +1,22 @@
 ﻿using System;
 using Content.Features.PlayerData.Scripts;
 using Content.Features.ShopModule.Scripts;
+using Core.GlobalSignalsModule.Scripts.Signals;
 using UnityEngine;
+using Zenject;
 
 namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
     public class SellItemsEntityBehaviour : IEntityBehaviour {
         private readonly BasePersistor<PlayerPersistentData> _playerDataPersistor;
         private EntityContext _entityContext;
         private Trader _trader;
-        
-        
-        public SellItemsEntityBehaviour(BasePersistor<PlayerPersistentData> playerPersistor)
+        private readonly SignalBus _signalBus;
+
+
+        public SellItemsEntityBehaviour(BasePersistor<PlayerPersistentData> playerPersistor, SignalBus signalBus)
         {
             _playerDataPersistor = playerPersistor;
+            _signalBus = signalBus;
         }
         
         public event Action OnBehaviorEnd;
@@ -50,6 +54,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
             playerData.Currency += currencyAmount;
             _playerDataPersistor.UpdateModel(playerData);
             _playerDataPersistor.SaveData();
+            _signalBus.Fire(new ReceiveCurrencySignal(playerData));
             
             StopMoving();
             OnBehaviorEnd?.Invoke();

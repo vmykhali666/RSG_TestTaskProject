@@ -1,10 +1,13 @@
+using System;
 using System.Linq;
 using Content.Features.StorageModule.Scripts;
 using Content.Features.StorageModule.Scripts.Signals;
 using Content.Features.UIModule.Scripts.Signals;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using IInitializable = Zenject.IInitializable;
 
 namespace Content.Features.UIModule.Scripts
 {
@@ -28,11 +31,12 @@ namespace Content.Features.UIModule.Scripts
         {
             _toggle.onValueChanged.AddListener(OnToggleValueChanged);
             _toggle.isOn = !_inventoryPresenter.IsOpened;
-            _signalBus.Subscribe<StorageAddItemSignal>(OnStorageItemAdded);
+            _signalBus.Subscribe<StorageAddItemSignal>(UpdateStorageItemBadge);
+            _signalBus.Subscribe<StorageRemoveItemSignal>(UpdateStorageItemBadge);
             _badge.Initialize();
         }
 
-        private void OnStorageItemAdded()
+        private void UpdateStorageItemBadge()
         {
             var items = _storage.GetAllItems().Count(item => item.IsNewItem);
             if (items > 0)
@@ -53,6 +57,8 @@ namespace Content.Features.UIModule.Scripts
         private void OnDestroy()
         {
             _toggle.onValueChanged.RemoveListener(OnToggleValueChanged);
+            _signalBus.TryUnsubscribe<StorageAddItemSignal>(UpdateStorageItemBadge);
+            _signalBus.TryUnsubscribe<StorageRemoveItemSignal>(UpdateStorageItemBadge);
         }
     }
 }

@@ -33,8 +33,7 @@ namespace Content.Features.StorageModule.Scripts
 
         public void AddItems(List<Item> items)
         {
-            foreach (Item item in items)
-                AddItem(item);
+            items.ForEach(_items.Add);
         }
 
         public void RemoveItem(Item item)
@@ -48,14 +47,15 @@ namespace Content.Features.StorageModule.Scripts
 
         public void RemoveItems(List<Item> items)
         {
-            foreach (Item item in items)
-                RemoveItem(item);
+            items.ForEach(RemoveItem);
         }
 
         public void RemoveAllItems()
         {
-            foreach (Item item in _items)
-                RemoveItem(item);
+            for (var i = 0; i < _items.Count; i++)
+            {
+                RemoveItem(_items[i]);
+            }
         }
 
         public float GetCurrentCapacity()

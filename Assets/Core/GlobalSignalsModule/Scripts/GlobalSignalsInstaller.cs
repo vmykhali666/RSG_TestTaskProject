@@ -12,6 +12,8 @@ namespace Core.GlobalSignalsModule.Scripts
             Container.DeclareSignal<DamageableDestroyed>().OptionalSubscriber();
             
             Container.DeclareSignal<PlayerHealthChangedSignal>().OptionalSubscriber();
+            
+            Container.DeclareSignal<ReceiveCurrencySignal>().OptionalSubscriber();
         }
     }
 }
