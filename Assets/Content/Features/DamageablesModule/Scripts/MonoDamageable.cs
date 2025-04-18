@@ -46,7 +46,7 @@ namespace Content.Features.DamageablesModule.Scripts
 
         public void SetHealth(float health)
         {
-            _currentHealth = health;
+            _currentHealth = health > _maxHealth ? _maxHealth : health;
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
         }
         

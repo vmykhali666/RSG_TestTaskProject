@@ -2,21 +2,20 @@ using UnityEngine;
 
 namespace Content.Features.StorageModule.Scripts
 {
-    [CreateAssetMenu(
-        menuName = "Configurations/Inventory/" + nameof(ItemsConfiguration) + "/" + nameof(ItemConfiguration),
-        fileName = nameof(ItemConfiguration), order = 0)]
-    public class ItemConfiguration : ScriptableObject
+    public abstract class ItemConfiguration : ScriptableObject
     {
-        public ItemType ItemType;
-        public string Name;
-        public Sprite Icon;
-        [Range(0, 10000)] public int Price;
-        [Range(0, 100)] public float Weight;
-        public bool IsNewItem = true;
+        [SerializeField] private ItemType _itemType;
+        [SerializeField] private string _name;
+        [SerializeField] private Sprite _icon;
+        [SerializeField] private float _weight;
+        [SerializeField] private bool _isNewItem;
 
-        public virtual Item CreateItem()
-        {
-            return new Item(this);
-        }
+        public ItemType ItemType => _itemType;
+        public string Name => _name;
+        public Sprite Icon => _icon;
+        public float Weight => _weight;
+        public bool IsNewItem => _isNewItem;
+
+        public abstract Item CreateItem();
     }
 }

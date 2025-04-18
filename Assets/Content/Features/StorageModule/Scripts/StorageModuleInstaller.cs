@@ -1,4 +1,6 @@
-﻿using Content.Features.StorageModule.Scripts.Constraints;
+﻿using Content.Features.DamageablesModule.Scripts;
+using Content.Features.DamageablesModule.Scripts.Signals;
+using Content.Features.StorageModule.Scripts.Constraints;
 using Content.Features.StorageModule.Scripts.Signals;
 using Core.AssetLoaderModule.Core.Scripts;
 using Global.Scripts.Generated;

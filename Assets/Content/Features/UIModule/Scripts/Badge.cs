@@ -1,12 +1,10 @@
-using System;
 using Content.Features.UIModule.Scripts.UIAnimations;
 using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace Content.Features.UIModule.Scripts
 {
-    public class InventoryBadge : MonoBehaviour
+    public class Badge : MonoBehaviour
     {
         [SerializeField] private GameObject _badge;
         [SerializeField] private TMP_Text _badgeText;

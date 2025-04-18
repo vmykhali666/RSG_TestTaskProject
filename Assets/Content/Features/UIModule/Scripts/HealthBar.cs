@@ -28,7 +28,13 @@ namespace Content.Features.UIModule.Scripts
             _slider.maxValue = damageable.MaxHealth;
             _slider.value = damageable.CurrentHealth;
             _damageable.OnDamaged += OnDamaged;
+            _damageable.OnHealthChanged += UpdateHealthBar;
             TrackPosition();
+        }
+
+        private void UpdateHealthBar(float current, float max)
+        {
+            UpdateHealthBar(current);
         }
 
         private void OnDamaged(float incomeDamage)

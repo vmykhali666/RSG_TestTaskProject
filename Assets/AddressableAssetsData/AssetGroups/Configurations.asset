@@ -15,6 +15,16 @@ MonoBehaviour:
   m_GroupName: Configurations
   m_GUID: 0ef284813199e1c4fb1dc2a763393a34
   m_SerializeEntries:
+  - m_GUID: 11f5fa36373ee4388aa5e73a4f44488a
+    m_Address: HealableConfiguration
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 561d8fea38c164a1f94c281904ed4dbb
+    m_Address: ItemConfiguration
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5cf8fe46b3c1e48c98402a7c31d0df08
     m_Address: StorageSettings_Default
     m_ReadOnly: 0

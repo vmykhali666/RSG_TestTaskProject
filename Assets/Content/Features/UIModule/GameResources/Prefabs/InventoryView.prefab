@@ -195,6 +195,7 @@ MonoBehaviour:
   _cellsParent: {fileID: 3988792482788793138}
   _reorderableList: {fileID: 116782314805775994}
   _popupWindowAnimator: {fileID: 4979936904513164859}
+  _isOpened: 0
 --- !u!114 &7012474408902735825
 MonoBehaviour:
   m_ObjectHideFlags: 0

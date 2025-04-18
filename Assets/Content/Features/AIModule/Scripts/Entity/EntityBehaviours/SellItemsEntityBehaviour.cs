@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Linq;
 using Content.Features.PlayerData.Scripts;
 using Content.Features.ShopModule.Scripts;
+using Content.Features.StorageModule.Scripts;
 using Core.GlobalSignalsModule.Scripts.Signals;
 using UnityEngine;
 using Zenject;
 
-namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
-    public class SellItemsEntityBehaviour : IEntityBehaviour {
+namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
+{
+    public class SellItemsEntityBehaviour : IEntityBehaviour
+    {
         private readonly BasePersistor<PlayerPersistentData> _playerDataPersistor;
         private EntityContext _entityContext;
         private Trader _trader;
@@ -18,25 +22,29 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
             _playerDataPersistor = playerPersistor;
             _signalBus = signalBus;
         }
-        
+
         public event Action OnBehaviorEnd;
+
         public void InitContext(EntityContext entityContext) =>
             _entityContext = entityContext;
-        
+
         public void SetTrader(Trader trader) =>
             _trader = trader;
 
         public void Start() =>
             _entityContext.NavMeshAgent.speed = _entityContext.EntityData.Speed;
 
-        public void Process() {
-            if(IsNearTheTarget())
+        public void Process()
+        {
+            if (IsNearTheTarget())
                 SellItems();
             else
                 MoveToTarget();
         }
 
-        public void Stop() { }
+        public void Stop()
+        {
+        }
 
         private void MoveToTarget() =>
             _entityContext.NavMeshAgent.SetDestination(_trader.transform.position);
@@ -45,17 +53,20 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
             _entityContext.NavMeshAgent.ResetPath();
 
         private bool IsNearTheTarget() =>
-            Vector3.Distance(_entityContext.EntityDamageable.Position, _trader.transform.position) <= _entityContext.EntityData.InteractDistance;
+            Vector3.Distance(_entityContext.EntityDamageable.Position, _trader.transform.position) <=
+            _entityContext.EntityData.InteractDistance;
 
-        private void SellItems() {
-            var currencyAmount = _trader.SellAllItemsFromStorage(_entityContext.Storage);
+        private void SellItems()
+        {
+            var defaultItems = _entityContext.Storage.GetAllItems<SellableItem>();
+            var currencyAmount = _trader.SellItemsFromStorage(defaultItems, _entityContext.Storage);
             //TODO: works with persistor from someService and remove it from here and fire signal instead of this code
             var playerData = _playerDataPersistor.GetDataModel();
             playerData.Currency += currencyAmount;
             _playerDataPersistor.UpdateModel(playerData);
             _playerDataPersistor.SaveData();
             _signalBus.Fire(new ReceiveCurrencySignal(playerData));
-            
+
             StopMoving();
             OnBehaviorEnd?.Invoke();
         }

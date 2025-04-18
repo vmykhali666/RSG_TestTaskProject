@@ -1,20 +1,18 @@
-using System;
 using System.Linq;
 using Content.Features.StorageModule.Scripts;
 using Content.Features.StorageModule.Scripts.Signals;
 using Content.Features.UIModule.Scripts.Signals;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using IInitializable = Zenject.IInitializable;
 
 namespace Content.Features.UIModule.Scripts
 {
+    //Make it MVP
     public class InventoryToggle : MonoBehaviour, IInitializable
     {
         [SerializeField] private Toggle _toggle;
-        [SerializeField] private InventoryBadge _badge;
+        [SerializeField] private Badge _badge;
         private SignalBus _signalBus;
         private IStorage _storage;
         private InventoryPresenter _inventoryPresenter;

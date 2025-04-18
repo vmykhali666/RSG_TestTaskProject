@@ -22,6 +22,11 @@ namespace Content.Features.StorageModule.Scripts
         public List<Item> GetAllItems() =>
             _items.ToList();
 
+        public List<T> GetAllItems<T>()
+        {
+            return _items.OfType<T>().ToList();
+        }
+
         public void AddItem(Item item)
         {
             if (_items.Contains(item))

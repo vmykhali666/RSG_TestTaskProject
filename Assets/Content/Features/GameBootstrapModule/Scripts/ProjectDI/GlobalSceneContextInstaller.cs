@@ -1,6 +1,7 @@
 using Content.Features.AIModule.Scripts.Entity;
 using Content.Features.StorageModule.Scripts;
 using Content.Features.CameraModule;
+using Content.Features.DamageablesModule.Scripts;
 using Content.Features.InteractionModule;
 using Content.Features.LootModule.Scripts;
 using Content.Features.PlayerData.Scripts;
@@ -17,6 +18,7 @@ namespace Content.Features.GameBootstrapModule.Scripts.ProjectDI {
             PlayerDataInstaller.Install(Container);
             CameraInstaller.Install(Container);
             StorageModuleInstaller.Install(Container);
+            DamageablesModuleInstaller.Install(Container);
             InteractionSystemInstaller.Install(Container);
             AIInstaller.Install(Container);
             LootInstaller.Install(Container);

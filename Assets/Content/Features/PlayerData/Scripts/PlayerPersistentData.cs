@@ -7,6 +7,6 @@ namespace Content.Features.PlayerData.Scripts
     {
         public float MaxHealth;
         public float CurrentHealth;
-        public int Currency;
+        public float Currency;
     }
 }

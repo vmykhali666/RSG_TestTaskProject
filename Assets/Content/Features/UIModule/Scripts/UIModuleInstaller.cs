@@ -24,7 +24,9 @@ namespace Content.Features.UIModule.Scripts
 
             Container.BindInterfacesAndSelfTo<InventoryPresenter>().AsSingle();
 
-            Container.BindInterfacesTo<InventoryToggle>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesAndSelfTo<InventoryToggle>().FromComponentInHierarchy().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<HealButton>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindHealthBar()

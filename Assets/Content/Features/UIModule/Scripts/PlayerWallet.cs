@@ -8,6 +8,7 @@ using Zenject;
 
 namespace Content.Features.UIModule.Scripts
 {
+    //TODO: make it MVP
     public class PlayerWallet : MonoBehaviour
     {
         [SerializeField] private TMP_Text _text;
