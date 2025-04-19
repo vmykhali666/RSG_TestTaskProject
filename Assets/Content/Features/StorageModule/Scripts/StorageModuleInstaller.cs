@@ -37,8 +37,7 @@ namespace Content.Features.StorageModule.Scripts
 
         private void BindServices()
         {
-            Container.Bind<IStorageConstraintService>()
-                .To<StorageConstraintService>()
+            Container.BindInterfacesAndSelfTo<StorageConstraintService>()
                 .AsSingle();
 
             Container.BindInterfacesAndSelfTo<PlayerStorageService>()

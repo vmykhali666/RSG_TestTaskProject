@@ -83,10 +83,12 @@ namespace Content.Features.AIModule.Scripts.Entity
         
         private void OnHealthChanged(float currentHealth, float maxHealth)
         {
+            var data = _playerPersistor.GetDataModel();
             _playerPersistor.UpdateModel(new PlayerPersistentData()
             {
                 CurrentHealth = currentHealth,
-                MaxHealth = maxHealth
+                MaxHealth = maxHealth,
+                Currency = data.Currency
             });
             _playerPersistor.SaveData();
             _signalBus.Fire(new PlayerHealthChangedSignal(currentHealth, maxHealth));

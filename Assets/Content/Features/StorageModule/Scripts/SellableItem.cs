@@ -4,19 +4,24 @@ using UnityEngine;
 namespace Content.Features.StorageModule.Scripts
 {
     [Serializable]
-    public class SellableItem : Item, ISellable
+    public class SellableItem : Item, ISellable, IDroppable
     {
-        public float Price { get; private set; }
+        public float Price { get; set; }
 
-        public SellableItem(float price, string name, Sprite icon, float weight, bool isNewItem = true) :
+        public SellableItem(float price, float dropChance, string name, Sprite icon, float weight,
+            bool isNewItem = true) :
             base(name, icon, weight, isNewItem)
         {
             Price = price;
+            DropChance = dropChance;
         }
 
-        public SellableItem(ItemConfiguration itemConfiguration, float price) : base(itemConfiguration)
+        public SellableItem(ItemConfiguration itemConfiguration, float price, float dropChance) :
+            this(price, dropChance, itemConfiguration.Name, itemConfiguration.Icon, itemConfiguration.Weight,
+                itemConfiguration.IsNewItem)
         {
-            Price = price;
         }
+
+        public float DropChance { get; set; }
     }
 }

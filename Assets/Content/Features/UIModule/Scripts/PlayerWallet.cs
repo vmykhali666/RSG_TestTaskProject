@@ -28,11 +28,12 @@ namespace Content.Features.UIModule.Scripts
         private void Awake()
         {
             var playerData = _playerPersistentData.GetDataModel();
-            _signalBus.Subscribe<ReceiveCurrencySignal>(OnReceiveCurrency);
+            _signalBus.Subscribe<ReceivedCurrencySignal>(OnChangeCurrency);
+            _signalBus.Subscribe<SpentCurrencySignal>(OnChangeCurrency);
             UpdateWallet(playerData);
         }
 
-        private void OnReceiveCurrency()
+        private void OnChangeCurrency()
         {
             UpdateWallet(_playerPersistentData.GetDataModel());
         }
@@ -44,7 +45,8 @@ namespace Content.Features.UIModule.Scripts
 
         private void OnDestroy()
         {
-            _signalBus.TryUnsubscribe<ReceiveCurrencySignal>(OnReceiveCurrency);
+            _signalBus.TryUnsubscribe<ReceivedCurrencySignal>(OnChangeCurrency);
+            _signalBus.TryUnsubscribe<SpentCurrencySignal>(OnChangeCurrency);
         }
     }
 }

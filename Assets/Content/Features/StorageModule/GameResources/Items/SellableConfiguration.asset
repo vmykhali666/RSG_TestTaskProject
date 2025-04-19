@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64af44513c64b16abea35488824621f, type: 3}
   m_Name: SellableConfiguration
   m_EditorClassIdentifier: 
+  _itemType: 2
+  _name: Book
+  _icon: {fileID: 21300000, guid: b30b0f3a78bf00c49a5e792f0ad4856a, type: 3}
+  _weight: 5
+  _isNewItem: 1
+  <Price>k__BackingField: 20
+  <DropChance>k__BackingField: 0.736

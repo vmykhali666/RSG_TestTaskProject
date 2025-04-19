@@ -13,7 +13,9 @@ namespace Core.GlobalSignalsModule.Scripts
             
             Container.DeclareSignal<PlayerHealthChangedSignal>().OptionalSubscriber();
             
-            Container.DeclareSignal<ReceiveCurrencySignal>().OptionalSubscriber();
+            Container.DeclareSignal<ReceivedCurrencySignal>().OptionalSubscriber();
+            
+            Container.DeclareSignal<SpentCurrencySignal>().OptionalSubscriber();
         }
     }
 }

@@ -11,16 +11,14 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 {
     public class SellItemsEntityBehaviour : IEntityBehaviour
     {
-        private readonly BasePersistor<PlayerPersistentData> _playerDataPersistor;
         private EntityContext _entityContext;
         private Trader _trader;
-        private readonly SignalBus _signalBus;
+        private readonly CurrencyPaymentService _currencyPaymentService;
 
 
-        public SellItemsEntityBehaviour(BasePersistor<PlayerPersistentData> playerPersistor, SignalBus signalBus)
+        public SellItemsEntityBehaviour(CurrencyPaymentService currencyPaymentService)
         {
-            _playerDataPersistor = playerPersistor;
-            _signalBus = signalBus;
+            _currencyPaymentService = currencyPaymentService;
         }
 
         public event Action OnBehaviorEnd;
@@ -60,12 +58,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
         {
             var defaultItems = _entityContext.Storage.GetAllItems<SellableItem>();
             var currencyAmount = _trader.SellItemsFromStorage(defaultItems, _entityContext.Storage);
-            //TODO: works with persistor from someService and remove it from here and fire signal instead of this code
-            var playerData = _playerDataPersistor.GetDataModel();
-            playerData.Currency += currencyAmount;
-            _playerDataPersistor.UpdateModel(playerData);
-            _playerDataPersistor.SaveData();
-            _signalBus.Fire(new ReceiveCurrencySignal(playerData));
+            _currencyPaymentService.AddCurrency(currencyAmount);
 
             StopMoving();
             OnBehaviorEnd?.Invoke();

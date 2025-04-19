@@ -4,11 +4,11 @@ namespace Content.Features.StorageModule.Scripts
 {
     public abstract class Item
     {
-        public string Name { get; private set; }
-        public Sprite Icon { get; private set; }
+        public string Name { get; set; }
+        public Sprite Icon { get; set; }
 
-        public float Weight { get; private set; }
-        public bool IsNewItem { get; private set; }
+        public float Weight { get; set; }
+        public bool IsNewItem { get; set; }
 
         public Item(string name, Sprite icon, float weight, bool isNewItem = true)
         {

@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Assets
   m_GUID: fdab9cb5c9ea02b4a852e640109b281b
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 7f549e8ad8d7baa49a57fb6ceae42585
+    m_Address: UIParticlesAddative
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cdfed901c846f724cbd82acfff6f8f62, type: 2}
   m_SchemaSet:

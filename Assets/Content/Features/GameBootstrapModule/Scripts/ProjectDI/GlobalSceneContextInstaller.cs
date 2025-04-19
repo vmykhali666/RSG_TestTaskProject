@@ -6,6 +6,7 @@ using Content.Features.InteractionModule;
 using Content.Features.LootModule.Scripts;
 using Content.Features.PlayerData.Scripts;
 using Content.Features.PrefabSpawner;
+using Content.Features.ShopModule.Scripts;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,7 @@ namespace Content.Features.GameBootstrapModule.Scripts.ProjectDI {
             CameraInstaller.Install(Container);
             StorageModuleInstaller.Install(Container);
             DamageablesModuleInstaller.Install(Container);
+            ShopModuleInstaller.Install(Container);
             InteractionSystemInstaller.Install(Container);
             AIInstaller.Install(Container);
             LootInstaller.Install(Container);

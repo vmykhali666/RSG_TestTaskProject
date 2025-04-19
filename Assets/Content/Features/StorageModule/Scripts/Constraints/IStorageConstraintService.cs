@@ -8,5 +8,7 @@ namespace Content.Features.StorageModule.Scripts.Constraints
         StorageConstraintResult CheckConstraints(List<Item> items, IStorage storage);
         
         StorageConstraintResult CheckConstraints(Loot loot, IStorage storage);
+        
+        StorageConstraintResult CheckConstraints(Item item, IStorage storage);
     }
 }

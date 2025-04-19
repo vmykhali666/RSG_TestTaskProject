@@ -33,5 +33,11 @@ namespace Content.Features.StorageModule.Scripts.Constraints
             var items = itemTypes.Select(type => _itemFactory.GetItem(type)).ToList();
             return CheckConstraints(items, storage);
         }
+
+        public StorageConstraintResult CheckConstraints(Item item, IStorage storage)
+        {
+            var items = new List<Item> { item };
+            return CheckConstraints(items, storage);
+        }
     }
 }

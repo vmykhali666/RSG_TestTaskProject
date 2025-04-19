@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using ModestTree;
 using UnityEngine;
 
 namespace Content.Features.StorageModule.Scripts
@@ -39,6 +41,19 @@ namespace Content.Features.StorageModule.Scripts
 
             Debug.LogWarning($"Item configuration for {itemType} not found. Using default item configuration.");
             return _defaultItem;
+        }
+
+        public List<ItemConfiguration> GetItemConfiguration<T>()
+        {
+            var itemConfigurations = _itemConfigurations
+                .Where(config => config is T)
+                .ToList();
+            if (itemConfigurations.IsEmpty())
+            {
+                Debug.LogWarning($"Item configuration of type {typeof(T)} not found.");
+            }
+
+            return itemConfigurations;
         }
     }
 }

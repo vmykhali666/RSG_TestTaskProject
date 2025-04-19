@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdcd6f22cd923410fb6399b29215bb24
+    m_Address: HealPotionButton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c22eb63d2ceb94a12ae12accbc8581f5
     m_Address: HealthBar
     m_ReadOnly: 0
