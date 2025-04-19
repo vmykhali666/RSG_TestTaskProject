@@ -1,9 +1,12 @@
 ﻿using System;
+using Content.Features.AIModule.Scripts.Entity.Datas;
 using Content.Features.GameFlowStateMachineModule.Scripts;
 using UnityEngine;
 
-namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
-    public class MoveToSurfaceEntityBehaviour : IEntityBehaviour {
+namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
+{
+    public class MoveToSurfaceEntityBehaviour : IEntityBehaviour
+    {
         private EntityContext _entityContext;
         private Vector3 _teleportPosition;
         private GameFlowStateMachine _gameFlowStateMachine;
@@ -19,18 +22,22 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
         public void SetTelepotPosition(Vector3 teleportPosition) =>
             _teleportPosition = teleportPosition;
 
-        public void Start() {
-            _entityContext.NavMeshAgent.speed = _entityContext.EntityData.Speed;
+        public void Start()
+        {
+            _entityContext.NavMeshAgent.speed = (_entityContext.EntityData as IMovableData)?.Speed ?? 0;
         }
 
-        public void Process() {
+        public void Process()
+        {
             if (IsNearTheTarget())
                 TeleportToSurface();
             else
                 MoveToTarget();
         }
 
-        public void Stop() { }
+        public void Stop()
+        {
+        }
 
         private void MoveToTarget() =>
             _entityContext.NavMeshAgent.SetDestination(_teleportPosition);
@@ -39,9 +46,11 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
             _entityContext.NavMeshAgent.ResetPath();
 
         private bool IsNearTheTarget() =>
-            Vector3.Distance(_entityContext.EntityDamageable.Position, _teleportPosition) <= _entityContext.EntityData.InteractDistance;
+            Vector3.Distance(_entityContext.EntityDamageable.Position, _teleportPosition) <=
+            ((_entityContext.EntityData as IInteractableData)?.InteractDistance ?? 0);
 
-        private void TeleportToSurface() {
+        private void TeleportToSurface()
+        {
             _gameFlowStateMachine.Enter<EnterSurfaceFlowState>();
             StopMoving();
             OnBehaviorEnd?.Invoke();

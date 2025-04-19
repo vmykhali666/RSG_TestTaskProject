@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Linq;
-using Content.Features.PlayerData.Scripts;
+using Content.Features.AIModule.Scripts.Entity.Datas;
 using Content.Features.ShopModule.Scripts;
 using Content.Features.StorageModule.Scripts;
-using Core.GlobalSignalsModule.Scripts.Signals;
 using UnityEngine;
-using Zenject;
 
 namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 {
@@ -30,7 +27,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
             _trader = trader;
 
         public void Start() =>
-            _entityContext.NavMeshAgent.speed = _entityContext.EntityData.Speed;
+            _entityContext.NavMeshAgent.speed = (_entityContext.EntityData as IMovableData)?.Speed ?? 0;
 
         public void Process()
         {
@@ -52,7 +49,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 
         private bool IsNearTheTarget() =>
             Vector3.Distance(_entityContext.EntityDamageable.Position, _trader.transform.position) <=
-            _entityContext.EntityData.InteractDistance;
+            ((_entityContext.EntityData as IInteractableData)?.InteractDistance ?? 0);
 
         private void SellItems()
         {

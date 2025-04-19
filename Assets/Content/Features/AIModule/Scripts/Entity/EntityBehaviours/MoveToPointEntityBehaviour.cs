@@ -1,8 +1,11 @@
 ﻿using System;
+using Content.Features.AIModule.Scripts.Entity.Datas;
 using UnityEngine;
 
-namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
-    public class MoveToPointEntityBehaviour : IEntityBehaviour {
+namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
+{
+    public class MoveToPointEntityBehaviour : IEntityBehaviour
+    {
         private EntityContext _entityContext;
         private Vector3 _moveToPosition;
 
@@ -15,26 +18,31 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
             _moveToPosition = teleportPosition;
 
         public void Start() =>
-            _entityContext.NavMeshAgent.speed = _entityContext.EntityData.Speed;
+            _entityContext.NavMeshAgent.speed = (_entityContext.EntityData as IMovableData)?.Speed ?? 0;
 
-        public void Process() {
+        public void Process()
+        {
             if (IsNearTheTarget())
                 StopMoving();
             else
                 MoveToTarget();
         }
 
-        public void Stop() { }
+        public void Stop()
+        {
+        }
 
         private void MoveToTarget() =>
             _entityContext.NavMeshAgent.SetDestination(_moveToPosition);
 
-        private void StopMoving() {
+        private void StopMoving()
+        {
             _entityContext.NavMeshAgent.ResetPath();
             OnBehaviorEnd?.Invoke();
         }
 
         private bool IsNearTheTarget() =>
-            Vector3.Distance(_entityContext.EntityDamageable.Position, _moveToPosition) <= _entityContext.EntityData.InteractDistance;
+            Vector3.Distance(_entityContext.EntityDamageable.Position, _moveToPosition) <=
+            ((_entityContext.EntityData as IInteractableData)?.InteractDistance ?? 0);
     }
 }

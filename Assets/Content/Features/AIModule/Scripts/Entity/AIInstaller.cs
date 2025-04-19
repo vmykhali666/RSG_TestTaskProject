@@ -1,4 +1,5 @@
-﻿using Core.AssetLoaderModule.Core.Scripts;
+﻿using Content.Features.AIModule.Scripts.Entity.Datas;
+using Core.AssetLoaderModule.Core.Scripts;
 using Global.Scripts.Generated;
 using Zenject;
 

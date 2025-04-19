@@ -1,4 +1,5 @@
-﻿using Content.Features.AIModule.Scripts.Entity.EntityBehaviours;
+﻿using Content.Features.AIModule.Scripts.Entity.Datas;
+using Content.Features.AIModule.Scripts.Entity.EntityBehaviours;
 using Content.Features.DamageablesModule.Scripts;
 using Content.Features.StorageModule.Scripts;
 using Core.GlobalSignalsModule.Scripts.Signals;
@@ -7,15 +8,14 @@ using Zenject;
 
 namespace Content.Features.AIModule.Scripts.Entity
 {
-    public class MonoEntity : MonoBehaviour, IEntity
+    public abstract class MonoEntity : MonoBehaviour, IEntity
     {
         [SerializeField] protected EntityContext _entityContext;
-        [SerializeField] protected EntityType _entityType;
         [SerializeField] protected bool _isAggressive;
         [SerializeField] private StorageSettings _storageSettings;
 
         private IEntityBehaviour _currentBehaviour;
-        private IEntityDataService _entityDataService;
+        protected IEntityDataService _entityDataService;
         private IEntityBehaviourFactory _entityBehaviourFactory;
         private IStorageFactory _storageFactory;
         protected SignalBus _signalBus;
@@ -34,15 +34,16 @@ namespace Content.Features.AIModule.Scripts.Entity
         {
             _entityContext.Entity = this;
             _entityContext.EntityDamageable = GetComponent<IDamageable>();
-            _entityContext.EntityData = _entityDataService.GetEntityData(_entityType);
             _entityContext.Storage = CreateStorage();
-            _entityContext.EntityDamageable.SetHealth(_entityContext.EntityData.StartHealth);
-            
+            _entityContext.EntityData = InitializeEntytiData();
+
             _signalBus.Fire(new DamageableCreated(
                 _entityContext.EntityDamageable));
 
             SetDefaultBehaviour();
         }
+
+        protected abstract EntityData InitializeEntytiData();
 
         protected virtual IStorage CreateStorage()
         {

@@ -1,4 +1,5 @@
 using System;
+using Content.Features.AIModule.Scripts.Entity.Datas;
 using Content.Features.ShopModule.Scripts;
 using Content.Features.StorageModule.Scripts;
 using Content.Features.StorageModule.Scripts.Constraints;
@@ -35,7 +36,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
         {
             _entityContext.EntityAnimator.SetIsAttacking(false);
             _entityContext.NavMeshAgent.ResetPath();
-            _entityContext.NavMeshAgent.speed = _entityContext.EntityData.Speed;
+            _entityContext.NavMeshAgent.speed = (_entityContext.EntityData as IMovableData)?.Speed ?? 0;
         }
 
         public void Process()
@@ -48,7 +49,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 
         private bool IsNearTheTarget() =>
             Vector3.Distance(_entityContext.EntityDamageable.Position, _targetTransform.position) <=
-            _entityContext.EntityData.InteractDistance;
+            ((_entityContext.EntityData as IInteractableData)?.InteractDistance ?? 0);
 
         private void MoveToTarget() =>
             _entityContext.NavMeshAgent.SetDestination(_targetTransform.position);

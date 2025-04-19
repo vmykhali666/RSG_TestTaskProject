@@ -1,4 +1,5 @@
 ﻿using System;
+using Content.Features.AIModule.Scripts.Entity.Datas;
 using Content.Features.LootModule.Scripts;
 using Content.Features.StorageModule.Scripts.Constraints;
 using UnityEngine;
@@ -28,7 +29,8 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 
         public void Start()
         {
-            _entityContext.NavMeshAgent.speed = _entityContext.EntityData.Speed;
+            _entityContext.NavMeshAgent.speed = (_entityContext.EntityData as IMovableData)?.Speed ?? 0;
+            ;
         }
 
         public void Process()
@@ -51,12 +53,12 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 
         private bool IsNearTheTarget() =>
             Vector3.Distance(_entityContext.EntityDamageable.Position, _loot.transform.position) <=
-            _entityContext.EntityData.InteractDistance;
+            ((_entityContext.EntityData as IInteractableData)?.InteractDistance ?? 0);
 
         private void CollectLoot()
         {
             var storageConstraintResult = _constraintService.CheckConstraints(_loot, _entityContext.Storage);
-            
+
             if (storageConstraintResult.IsValid)
             {
                 _lootService.CollectLoot(_loot, _entityContext.Storage);
@@ -66,7 +68,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
             {
                 Debug.Log($"Loot can't be collected: {storageConstraintResult.Message}");
             }
-            
+
             StopMoving();
             OnBehaviorEnd?.Invoke();
         }
