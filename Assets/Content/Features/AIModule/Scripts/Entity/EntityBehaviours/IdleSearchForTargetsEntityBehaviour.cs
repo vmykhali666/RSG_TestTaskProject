@@ -1,28 +1,40 @@
 ﻿using System;
+using Content.Features.AIModule.Scripts.Entity.EntityContext;
 using Content.Features.DamageablesModule.Scripts;
 
-namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours {
-    public class IdleSearchForTargetsEntityBehaviour : IEntityBehaviour {
-        private EntityContext _entityContext;
+namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
+{
+    public class IdleSearchForTargetsEntityBehaviour : IEntityBehaviour
+    {
+        private BaseEntityContext _entityContext;
 
         public event Action OnBehaviorEnd;
 
-        public void InitContext(EntityContext entityContext) =>
+        public void InitContext(BaseEntityContext entityContext) =>
             _entityContext = entityContext;
 
-        public void Start() {
+        public void Start()
+        {
             _entityContext.EntityAnimator.SetIsAttacking(false);
-            _entityContext.NavMeshAgent.ResetPath();
+            if (_entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.ResetPath();
+            }
         }
 
-        public void Process() {
-            if (!_entityContext.TargetsFinder.TryFindDamageable(out IDamageable damageable))
-                return;
+        public void Process()
+        {
+            if (_entityContext is ITargetsFinderContext targetsFinderContext &&
+                targetsFinderContext.TargetsFinder.TryFindDamageable(out IDamageable damageable))
+            {
+                damageable.Interactable.Interact(_entityContext.Entity);
+            }
 
-            damageable.Interactable.Interact(_entityContext.Entity);
             OnBehaviorEnd?.Invoke();
         }
 
-        public void Stop() { }
+        public void Stop()
+        {
+        }
     }
 }

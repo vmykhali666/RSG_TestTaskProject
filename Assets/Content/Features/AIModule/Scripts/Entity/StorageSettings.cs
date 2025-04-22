@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Content.Features.StorageModule.Scripts
+namespace Content.Features.AIModule.Scripts.Entity
 {
     [CreateAssetMenu(menuName = "Configurations/Inventory/" + nameof(StorageSettings),
         fileName = nameof(StorageSettings) + "_Default", order = 0)]

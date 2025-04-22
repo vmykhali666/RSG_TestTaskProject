@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using Content.Features.AIModule.Scripts.Entity;
+using Zenject;
 
 namespace Content.Features.StorageModule.Scripts
 {

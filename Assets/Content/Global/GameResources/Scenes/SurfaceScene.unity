@@ -3948,7 +3948,7 @@ GameObject:
   - component: {fileID: 1412830733}
   - component: {fileID: 1412830734}
   m_Layer: 0
-  m_Name: SellerSapwner
+  m_Name: SellerMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3978,9 +3978,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1412830732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cae2a9acfd44712964840f49b3fa438, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d7715b952634c20bfeb9fe68016411b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnType: 2
 --- !u!1001 &1452265749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4063,7 +4064,7 @@ GameObject:
   - component: {fileID: 1452297609}
   - component: {fileID: 1452297610}
   m_Layer: 0
-  m_Name: PlayerSpawner
+  m_Name: PlayerMarker
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4093,9 +4094,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1452297608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33e56ec7c36d4aca95406d280359eb2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d7715b952634c20bfeb9fe68016411b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnType: 0
 --- !u!1001 &1472972438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6169,11 +6171,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296835230681977357, guid: f1abeb53f28c0fb4dbb0212d621aea01, type: 3}
       propertyPath: _parentContractNames.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2296835230681977357, guid: f1abeb53f28c0fb4dbb0212d621aea01, type: 3}
       propertyPath: '_parentContractNames.Array.data[0]'
       value: GlobalScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2296835230681977357, guid: f1abeb53f28c0fb4dbb0212d621aea01, type: 3}
+      propertyPath: '_parentContractNames.Array.data[1]'
+      value: UIScene
       objectReference: {fileID: 0}
     - target: {fileID: 6835691631721815500, guid: f1abeb53f28c0fb4dbb0212d621aea01, type: 3}
       propertyPath: m_LocalPosition.x

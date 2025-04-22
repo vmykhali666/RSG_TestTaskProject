@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd67b0abbe144ea85fb25cdf5b71377, type: 3}
   m_Name: SellerEntityData
   m_EditorClassIdentifier: 
+  <InteractDistance>k__BackingField: 4

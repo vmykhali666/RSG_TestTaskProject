@@ -199,19 +199,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityContext:
-    EntityAnimator: {fileID: 1094867714571588053}
-    NavMeshAgent: {fileID: 9179333964592360424}
-    TargetsFinder: {fileID: 2991956045580720581}
-    EntityData:
-      EntityType: 0
-      StartHealth: 0
-      Damage: 0
-      AttackDistance: 0
-      InteractDistance: 0
-      Speed: 0
-  _entityType: 1
-  _isAggressive: 0
-  _storageSettings: {fileID: 0}
+    <EntityAnimator>k__BackingField: {fileID: 1094867714571588053}
+    <EntityData>k__BackingField: {fileID: 0}
+    <NavMeshAgent>k__BackingField: {fileID: 9179333964592360424}
+    <TargetsFinder>k__BackingField: {fileID: 2991956045580720581}
   _healingEffect: {fileID: 7232038159814742077}
   _healingShowTime: 1
 --- !u!114 &2274543699586035796

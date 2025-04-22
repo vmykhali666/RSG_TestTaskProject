@@ -1,6 +1,7 @@
 ﻿using System;
-using Content.Features.AIModule.Scripts.Entity.Datas;
+using Content.Features.AIModule.Scripts.Entity.EntityContext;
 using Content.Features.LootModule.Scripts;
+using Content.Features.PlayerData.Scripts.Datas;
 using Content.Features.StorageModule.Scripts.Constraints;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 {
     public class GatherLootEntityBehaviour : IEntityBehaviour
     {
-        private EntityContext _entityContext;
+        private BaseEntityContext _entityContext;
         private Loot _loot;
         private readonly ILootService _lootService;
         private readonly IStorageConstraintService _constraintService;
@@ -21,7 +22,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
             _constraintService = constraintService;
         }
 
-        public void InitContext(EntityContext entityContext) =>
+        public void InitContext(BaseEntityContext entityContext) =>
             _entityContext = entityContext;
 
         public void SetLoot(Loot loot) =>
@@ -29,8 +30,10 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 
         public void Start()
         {
-            _entityContext.NavMeshAgent.speed = (_entityContext.EntityData as IMovableData)?.Speed ?? 0;
-            ;
+            if (_entityContext.EntityData is IMovableData movable && _entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.speed = movable.Speed;
+            }
         }
 
         public void Process()
@@ -45,28 +48,53 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
         {
         }
 
-        private void MoveToTarget() =>
-            _entityContext.NavMeshAgent.SetDestination(_loot.transform.position);
-
-        private void StopMoving() =>
-            _entityContext.NavMeshAgent.ResetPath();
-
-        private bool IsNearTheTarget() =>
-            Vector3.Distance(_entityContext.EntityDamageable.Position, _loot.transform.position) <=
-            ((_entityContext.EntityData as IInteractableData)?.InteractDistance ?? 0);
-
-        private void CollectLoot()
+        private void MoveToTarget()
         {
-            var storageConstraintResult = _constraintService.CheckConstraints(_loot, _entityContext.Storage);
-
-            if (storageConstraintResult.IsValid)
+            if (_entityContext is INavigationContext navContext)
             {
-                _lootService.CollectLoot(_loot, _entityContext.Storage);
-                _loot.DestroyLoot();
+                navContext.NavMeshAgent.SetDestination(_loot.transform.position);
             }
             else
             {
-                Debug.Log($"Loot can't be collected: {storageConstraintResult.Message}");
+                Debug.LogError($"EntityContext {_entityContext} does not implement {nameof(INavigationContext)}");
+            }
+        }
+
+        private void StopMoving()
+        {
+            if (_entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.ResetPath();
+            }
+        }
+
+        private bool IsNearTheTarget()
+        {
+            if (_entityContext.EntityData is IInteractableData interactable &&
+                _entityContext is IDamageableContext damageable)
+            {
+                return Vector3.Distance(damageable.EntityDamageable.Position, _loot.transform.position) <=
+                       interactable.InteractDistance;
+            }
+
+            return true;
+        }
+
+        private void CollectLoot()
+        {
+            if (_entityContext is IStorageContext storageContext)
+            {
+                var storageConstraintResult = _constraintService.CheckConstraints(_loot, storageContext.Storage);
+
+                if (storageConstraintResult.IsValid)
+                {
+                    _lootService.CollectLoot(_loot, storageContext.Storage);
+                    _loot.DestroyLoot();
+                }
+                else
+                {
+                    Debug.Log($"Loot can't be collected: {storageConstraintResult.Message}");
+                }
             }
 
             StopMoving();

@@ -23,11 +23,28 @@ namespace Content.Features.DamageablesModule.Scripts
         public AttackInteractable Interactable =>
             _attackInteractable;
 
-        public float MaxHealth =>
-            _maxHealth;
+        public float MaxHealth
+        {
+            get => _maxHealth;
+            set
+            {
+                if (value > _currentHealth)
+                {
+                    _maxHealth = value;
+                }
+                else
+                {
+                    _maxHealth = value;
+                    _currentHealth = value;
+                }
+            }
+        }
 
-        public float CurrentHealth =>
-            _currentHealth;
+        public float CurrentHealth
+        {
+            get => _currentHealth;
+            set => _currentHealth = value > _maxHealth ? _maxHealth : value;
+        }
 
         public event Action<float> OnDamaged;
         public event Action OnKilled;
@@ -46,10 +63,10 @@ namespace Content.Features.DamageablesModule.Scripts
 
         public void SetHealth(float health)
         {
-            _currentHealth = health > _maxHealth ? _maxHealth : health;
+            CurrentHealth = health;
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
         }
-        
+
         public void Destroyed()
         {
             OnKilled?.Invoke();

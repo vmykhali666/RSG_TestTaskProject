@@ -7,7 +7,7 @@ namespace Core.GlobalSignalsModule.Scripts
     {
         public override void InstallBindings()
         {
-            Container.DeclareSignal<DamageableCreated>().OptionalSubscriber();
+            Container.DeclareSignal<DamagebleCreated>().OptionalSubscriber();
 
             Container.DeclareSignal<DamageableDestroyed>().OptionalSubscriber();
             

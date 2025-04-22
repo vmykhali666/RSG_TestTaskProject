@@ -1,5 +1,7 @@
 using System;
-using Content.Features.AIModule.Scripts.Entity.Datas;
+using Content.Features.AIModule.Scripts.Entity.EntityContext;
+using Content.Features.DamageablesModule.Scripts;
+using Content.Features.PlayerData.Scripts.Datas;
 using Content.Features.ShopModule.Scripts;
 using Content.Features.StorageModule.Scripts;
 using Content.Features.StorageModule.Scripts.Constraints;
@@ -9,7 +11,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 {
     public class BuyHealEntityBehaviour : IEntityBehaviour
     {
-        private EntityContext _entityContext;
+        private BaseEntityContext _entityContext;
         private readonly PlayerStorageService _playerStorageService;
         private readonly IItemFactory _itemFactory;
         private readonly IStorageConstraintService _constraintService;
@@ -27,7 +29,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
             _constraintService = storageConstraintService;
         }
 
-        public void InitContext(EntityContext entityContext)
+        public void InitContext(BaseEntityContext entityContext)
         {
             _entityContext = entityContext;
         }
@@ -35,8 +37,11 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
         public void Start()
         {
             _entityContext.EntityAnimator.SetIsAttacking(false);
-            _entityContext.NavMeshAgent.ResetPath();
-            _entityContext.NavMeshAgent.speed = (_entityContext.EntityData as IMovableData)?.Speed ?? 0;
+            if (_entityContext.EntityData is IMovableData movable && _entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.ResetPath();
+                navContext.NavMeshAgent.speed = movable.Speed;
+            }
         }
 
         public void Process()
@@ -47,15 +52,33 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
                 MoveToTarget();
         }
 
-        private bool IsNearTheTarget() =>
-            Vector3.Distance(_entityContext.EntityDamageable.Position, _targetTransform.position) <=
-            ((_entityContext.EntityData as IInteractableData)?.InteractDistance ?? 0);
+        private bool IsNearTheTarget()
+        {
+            if (_entityContext.EntityData is IAttackableData attackableData &&
+                _entityContext is IDamageableContext damageable)
+            {
+                return Vector3.Distance(damageable.EntityDamageable.Position, damageable.EntityDamageable.Position) <=
+                       attackableData.AttackDistance;
+            }
 
-        private void MoveToTarget() =>
-            _entityContext.NavMeshAgent.SetDestination(_targetTransform.position);
+            return true;
+        }
 
-        private void StopMoving() =>
-            _entityContext.NavMeshAgent.ResetPath();
+        private void MoveToTarget()
+        {
+            if (_entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.SetDestination(_targetTransform.position);
+            }
+        }
+
+        private void StopMoving()
+        {
+            if (_entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.ResetPath();
+            }
+        }
 
         public void Stop()
         {
@@ -64,9 +87,10 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
         private void BuyHeal()
         {
             var item = _itemFactory.GetItem<IHealable, Item>();
-            if (item != null && item is IBuyable buyable && _currencyService.CanPay(buyable.BuyPrice))
+            if (item is IBuyable buyable && _currencyService.CanPay(buyable.BuyPrice) &&
+                _entityContext is IStorageContext storageContext)
             {
-                var storageConstraintResult = _constraintService.CheckConstraints(item, _entityContext.Storage);
+                var storageConstraintResult = _constraintService.CheckConstraints(item, storageContext.Storage);
 
                 if (storageConstraintResult.IsValid)
                 {
@@ -75,7 +99,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
                 }
                 else
                 {
-                    Debug.Log("Not enough space in storage");
+                    Debug.Log(storageConstraintResult.Message);
                 }
             }
 

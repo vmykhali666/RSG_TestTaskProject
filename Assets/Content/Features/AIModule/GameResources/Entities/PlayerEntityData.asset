@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30b1b206b54447cb319bafcbad7cb86, type: 3}
   m_Name: PlayerEntityData
   m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 100
+  <CurrentHealth>k__BackingField: 100
+  <Damage>k__BackingField: 10
+  <AttackDistance>k__BackingField: 2
+  <InteractDistance>k__BackingField: 3
+  <Speed>k__BackingField: 6

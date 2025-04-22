@@ -1,4 +1,5 @@
-﻿using Content.Features.DamageablesModule.Scripts;
+﻿using Content.Features.AIModule.Scripts.Entity;
+using Content.Features.DamageablesModule.Scripts;
 using Content.Features.DamageablesModule.Scripts.Signals;
 using Content.Features.StorageModule.Scripts.Constraints;
 using Content.Features.StorageModule.Scripts.Signals;

@@ -1,27 +1,32 @@
 ﻿using System;
-using Content.Features.AIModule.Scripts.Entity.Datas;
+using Content.Features.AIModule.Scripts.Entity.EntityContext;
 using Content.Features.DamageablesModule.Scripts;
+using Content.Features.PlayerData.Scripts.Datas;
 using UnityEngine;
 
 namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 {
     public class AttackEntityBehaviour : IEntityBehaviour
     {
-        private EntityContext _entityContext;
+        private BaseEntityContext _entityContext;
         private IDamageable _targetDamageable;
 
         public event Action OnBehaviorEnd;
 
-        public void InitContext(EntityContext entityContext) =>
+        public void InitContext(BaseEntityContext entityContext) =>
             _entityContext = entityContext;
 
         public void SetTarget(IDamageable damageable) =>
             _targetDamageable = damageable;
 
+
         public void Start()
         {
-            var movable = _entityContext.EntityData as IMovableData;
-            _entityContext.NavMeshAgent.speed = movable?.Speed ?? 0;
+            if (_entityContext.EntityData is IMovableData movable && _entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.speed = movable.Speed;
+            }
+
             _entityContext.EntityAnimator.OnAttackTriggered += OnAttackTriggered;
         }
 
@@ -48,20 +53,35 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
                 return;
 
             _entityContext.EntityAnimator.SetIsAttacking(false);
-            _entityContext.NavMeshAgent.SetDestination(_targetDamageable.Position);
+            if (_entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.SetDestination(_targetDamageable.Position);
+            }
         }
 
-        private void StopMoving() =>
-            _entityContext.NavMeshAgent.ResetPath();
+        private void StopMoving()
+        {
+            if (_entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.ResetPath();
+            }
+        }
 
         private bool IsNearTheTarget()
         {
             if (_targetDamageable.IsActive is false)
                 return false;
 
-            var attackableData = _entityContext.EntityData as IAttackableData;
-            return Vector3.Distance(_entityContext.EntityDamageable.Position, _targetDamageable.Position) <=
-                   (attackableData?.AttackDistance ?? 0);
+            if (_entityContext.EntityData is IAttackableData attackableData &&
+                _entityContext is IDamageableContext damageable)
+            {
+                var distance = Vector3.Distance(damageable.EntityDamageable.Position,
+                    _targetDamageable.Position);
+                return distance <=
+                       attackableData.AttackDistance;
+            }
+
+            return true;
         }
 
         private void StartAttacking()

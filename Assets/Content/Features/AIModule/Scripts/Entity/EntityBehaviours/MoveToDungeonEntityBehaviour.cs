@@ -1,13 +1,14 @@
 ﻿using System;
-using Content.Features.AIModule.Scripts.Entity.Datas;
+using Content.Features.AIModule.Scripts.Entity.EntityContext;
 using Content.Features.GameFlowStateMachineModule.Scripts;
+using Content.Features.PlayerData.Scripts.Datas;
 using UnityEngine;
 
 namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 {
     public class MoveToDungeonEntityBehaviour : IEntityBehaviour
     {
-        private EntityContext _entityContext;
+        private BaseEntityContext _entityContext;
         private Vector3 _teleportPosition;
         private GameFlowStateMachine _gameFlowStateMachine;
 
@@ -16,7 +17,7 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
         public MoveToDungeonEntityBehaviour(GameFlowStateMachine gameFlowStateMachine) =>
             _gameFlowStateMachine = gameFlowStateMachine;
 
-        public void InitContext(EntityContext entityContext) =>
+        public void InitContext(BaseEntityContext entityContext) =>
             _entityContext = entityContext;
 
         public void SetTelepotPosition(Vector3 teleportPosition) =>
@@ -24,7 +25,10 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
 
         public void Start()
         {
-            _entityContext.NavMeshAgent.speed = (_entityContext.EntityData as IMovableData)?.Speed ?? 0;
+            if (_entityContext.EntityData is IMovableData movable && _entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.speed = movable.Speed;
+            }
         }
 
         public void Process()
@@ -39,15 +43,39 @@ namespace Content.Features.AIModule.Scripts.Entity.EntityBehaviours
         {
         }
 
-        private void MoveToTarget() =>
-            _entityContext.NavMeshAgent.SetDestination(_teleportPosition);
+        private void MoveToTarget()
+        {
+            if (_entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.SetDestination(_teleportPosition);
+            }
+            else
+            {
+                Debug.LogError($"EntityContext {_entityContext} does not implement {nameof(INavigationContext)}");
+            }
+        }
 
-        private void StopMoving() =>
-            _entityContext.NavMeshAgent.ResetPath();
+        private void StopMoving()
+        {
+            if (_entityContext is INavigationContext navContext)
+            {
+                navContext.NavMeshAgent.ResetPath();
+            }
+        }
 
-        private bool IsNearTheTarget() =>
-            Vector3.Distance(_entityContext.EntityDamageable.Position, _teleportPosition) <=
-            ((_entityContext.EntityData as IInteractableData)?.InteractDistance ?? 0);
+        private bool IsNearTheTarget()
+        {
+            if (_entityContext.EntityData is IInteractableData interactableData &&
+                _entityContext is IDamageableContext damageable)
+            {
+                var distance = Vector3.Distance(damageable.EntityDamageable.Position, _teleportPosition);
+                return distance <=
+                       interactableData.InteractDistance;
+            }
+
+            return true;
+        }
+
 
         private void TeleportToDungeon()
         {

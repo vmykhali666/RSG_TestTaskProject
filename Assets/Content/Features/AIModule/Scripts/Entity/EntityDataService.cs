@@ -1,4 +1,4 @@
-﻿using Content.Features.AIModule.Scripts.Entity.Datas;
+﻿using Content.Features.PlayerData.Scripts.Datas;
 
 namespace Content.Features.AIModule.Scripts.Entity
 {
@@ -9,7 +9,7 @@ namespace Content.Features.AIModule.Scripts.Entity
         public EntityDataService(EntitiesConfiguration entitiesConfiguration) =>
             _entitiesConfiguration = entitiesConfiguration;
 
-        public EntityData GetEntityData<T>() where T : EntityData
+        public T GetEntityData<T>() where T : EntityData
         {
             return _entitiesConfiguration.GetDataForEntity<T>();
         }

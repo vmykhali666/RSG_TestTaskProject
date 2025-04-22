@@ -1,4 +1,5 @@
 using System;
+using Content.Features.AIModule.Scripts.Entity;
 using Content.Features.StorageModule.Scripts.Signals;
 using Zenject;
 

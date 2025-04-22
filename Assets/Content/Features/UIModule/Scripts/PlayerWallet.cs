@@ -1,4 +1,3 @@
-using System;
 using Content.Features.PlayerData.Scripts;
 using Core.GlobalSignalsModule.Scripts.Signals;
 using TMPro;

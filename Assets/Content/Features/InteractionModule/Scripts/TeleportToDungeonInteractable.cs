@@ -13,9 +13,9 @@ namespace Content.Features.InteractionModule {
             _entityBehaviourFactory = entityBehaviourFactory;
 
         public void Interact(IEntity entity) {
-            MoveToDungeonEntityBehaviour moveToSurfaceEntityBehaviour = _entityBehaviourFactory.GetEntityBehaviour<MoveToDungeonEntityBehaviour>();
-            moveToSurfaceEntityBehaviour.SetTelepotPosition(transform.position);
-            entity.SetBehaviour(moveToSurfaceEntityBehaviour);
+            var moveToDungeonEntityBehaviour = _entityBehaviourFactory.GetEntityBehaviour<MoveToDungeonEntityBehaviour>();
+            moveToDungeonEntityBehaviour.SetTelepotPosition(transform.position);
+            entity.SetBehaviour(moveToDungeonEntityBehaviour);
         }
     }
 }

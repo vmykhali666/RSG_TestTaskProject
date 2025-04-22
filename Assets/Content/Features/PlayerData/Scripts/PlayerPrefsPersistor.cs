@@ -4,11 +4,8 @@ namespace Content.Features.PlayerData.Scripts
 {
     public class PlayerPrefsPersistor<T> : BasePersistor<T> where T : IDataModel
     {
-        public sealed override string PlayerPrefsKey { get; protected set; }
-
-        public PlayerPrefsPersistor(string playerPrefsKey)
+        public PlayerPrefsPersistor(string playerPrefsKey, T defaultDataModel) : base(playerPrefsKey, defaultDataModel)
         {
-            PlayerPrefsKey = playerPrefsKey;
         }
 
         public override void SaveData()

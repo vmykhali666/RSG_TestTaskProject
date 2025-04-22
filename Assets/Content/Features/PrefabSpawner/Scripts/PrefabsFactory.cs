@@ -32,5 +32,23 @@ namespace Content.Features.PrefabSpawner
             GameObject prefab = _addressablesAssetLoaderService.LoadAsset<GameObject>(prefabName);
             return _diContainer.InstantiatePrefab(prefab, position, Quaternion.identity, parent);
         }
+
+        public T Create<T>(string prefabName) where T : Component
+        {
+            GameObject prefab = _addressablesAssetLoaderService.LoadAsset<GameObject>(prefabName);
+            return _diContainer.InstantiatePrefab(prefab).GetComponent<T>();
+        }
+
+        public T Create<T>(string prefabName, Vector3 position) where T : Component
+        {
+            GameObject prefab = _addressablesAssetLoaderService.LoadAsset<GameObject>(prefabName);
+            return _diContainer.InstantiatePrefab(prefab, position, Quaternion.identity, null).GetComponent<T>();
+        }
+
+        public T Create<T>(string prefabName, Vector3 position, Transform parent) where T : Component
+        {
+            GameObject prefab = _addressablesAssetLoaderService.LoadAsset<GameObject>(prefabName);
+            return _diContainer.InstantiatePrefab(prefab, position, Quaternion.identity, parent).GetComponent<T>();
+        }
     }
 }

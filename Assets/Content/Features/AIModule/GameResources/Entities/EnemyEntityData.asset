@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58e13d1244347bc96575cc89318f06f, type: 3}
   m_Name: EnemyEntityData
   m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 10
+  <CurrentHealth>k__BackingField: 10
+  <Damage>k__BackingField: 5
+  <AttackDistance>k__BackingField: 2
+  <InteractDistance>k__BackingField: 3
+  <Speed>k__BackingField: 5
+  <IsAggressive>k__BackingField: 1

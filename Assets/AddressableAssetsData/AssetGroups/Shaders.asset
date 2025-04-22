@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: Shaders
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Shaders
   m_GUID: 1f693bca718bf4081a100281d98fea7c
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 7f549e8ad8d7baa49a57fb6ceae42585
+    m_Address: UIParticlesAddative
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cdfed901c846f724cbd82acfff6f8f62, type: 2}
   m_SchemaSet:

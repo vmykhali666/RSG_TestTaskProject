@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5823974902727624258}
   - component: {fileID: 4376217079836951281}
-  - component: {fileID: 3488651679392928430}
+  - component: {fileID: 8104151955491158826}
   m_Layer: 5
   m_Name: InventoryToggle
   m_TagString: Untagged
@@ -163,7 +163,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
---- !u!114 &3488651679392928430
+--- !u!114 &8104151955491158826
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4771839875643892259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8ace4890436d413687c8914774ebbab, type: 3}
+  m_Script: {fileID: 11500000, guid: 894d02f4ab2f4c8dba5b7f184b129c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _toggle: {fileID: 4376217079836951281}

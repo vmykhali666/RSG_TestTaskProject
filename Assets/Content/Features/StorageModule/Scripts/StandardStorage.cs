@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Content.Features.AIModule.Scripts.Entity;
 
 namespace Content.Features.StorageModule.Scripts
 {
@@ -57,7 +58,7 @@ namespace Content.Features.StorageModule.Scripts
 
         public void RemoveAllItems()
         {
-            for (var i = 0; i < _items.Count; i++)
+            for (var i = _items.Count - 1; i >= 0; i--)
             {
                 RemoveItem(_items[i]);
             }
