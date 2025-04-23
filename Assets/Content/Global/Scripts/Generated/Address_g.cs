@@ -3,11 +3,17 @@ using System.Collections.Generic;
 namespace Global.Scripts.Generated { 
     public static class Address { 
         public static List<string> AllKeys = new() {
+            "HealableConfiguration",
+            "PlayerEntityData",
+            "SellerEntityData",
             "StorageSettings_Default",
+            "EnemyEntityData",
             "InteractConfiguration",
             "EntitiesConfiguration_Default",
-            "GamePrefabsConfiguration",
+            "SellableConfiguration",
             "ItemsConfiguration_Default",
+            "GamePrefabsConfiguration",
+            "UIParticlesAddative",
             "BootstrapScene",
             "GlobalScene",
             "UIScene",
@@ -18,6 +24,7 @@ namespace Global.Scripts.Generated {
             "PlayerWallet",
             "InventoryToggle",
             "InventoryCell",
+            "HealPotionButton",
             "HealthBar",
             "UIRootConvas",
             "FX_SunGlow",
@@ -30,17 +37,34 @@ namespace Global.Scripts.Generated {
             "Seller",
         }; 
         public static class Configurations { 
+            public const System.String HealableConfiguration = "HealableConfiguration"; 
+            public const System.String PlayerEntityData = "PlayerEntityData"; 
+            public const System.String SellerEntityData = "SellerEntityData"; 
             public const System.String StorageSettings_Default = "StorageSettings_Default"; 
+            public const System.String EnemyEntityData = "EnemyEntityData"; 
             public const System.String InteractConfiguration = "InteractConfiguration"; 
             public const System.String EntitiesConfiguration_Default = "EntitiesConfiguration_Default"; 
-            public const System.String GamePrefabsConfiguration = "GamePrefabsConfiguration"; 
+            public const System.String SellableConfiguration = "SellableConfiguration"; 
             public const System.String ItemsConfiguration_Default = "ItemsConfiguration_Default"; 
+            public const System.String GamePrefabsConfiguration = "GamePrefabsConfiguration"; 
             public static List<string> AllKeys = new() {
+                "HealableConfiguration",
+                "PlayerEntityData",
+                "SellerEntityData",
                 "StorageSettings_Default",
+                "EnemyEntityData",
                 "InteractConfiguration",
                 "EntitiesConfiguration_Default",
-                "GamePrefabsConfiguration",
+                "SellableConfiguration",
                 "ItemsConfiguration_Default",
+                "GamePrefabsConfiguration",
+            }; 
+        } 
+
+        public static class Shaders { 
+            public const System.String UIParticlesAddative = "UIParticlesAddative"; 
+            public static List<string> AllKeys = new() {
+                "UIParticlesAddative",
             }; 
         } 
 
@@ -65,6 +89,7 @@ namespace Global.Scripts.Generated {
             public const System.String PlayerWallet = "PlayerWallet"; 
             public const System.String InventoryToggle = "InventoryToggle"; 
             public const System.String InventoryCell = "InventoryCell"; 
+            public const System.String HealPotionButton = "HealPotionButton"; 
             public const System.String HealthBar = "HealthBar"; 
             public const System.String UIRootConvas = "UIRootConvas"; 
             public const System.String FX_SunGlow = "FX_SunGlow"; 
@@ -75,6 +100,7 @@ namespace Global.Scripts.Generated {
                 "PlayerWallet",
                 "InventoryToggle",
                 "InventoryCell",
+                "HealPotionButton",
                 "HealthBar",
                 "UIRootConvas",
                 "FX_SunGlow",

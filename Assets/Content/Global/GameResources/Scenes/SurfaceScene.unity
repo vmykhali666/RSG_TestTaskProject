@@ -2894,6 +2894,8 @@ GameObject:
   - component: {fileID: 1110372232}
   - component: {fileID: 1110372235}
   - component: {fileID: 1110372234}
+  - component: {fileID: 1110372237}
+  - component: {fileID: 1110372236}
   m_Layer: 6
   m_Name: Boxes
   m_TagString: Untagged
@@ -2988,6 +2990,34 @@ MonoBehaviour:
   _maxHealth: 10
   _damageableType: 1
   _attackInteractable: {fileID: 1110372234}
+--- !u!114 &1110372236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110372230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa49ffe25d54e8e830b304c8bd800e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lootSpawner: {fileID: 1110372237}
+--- !u!114 &1110372237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110372230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c9780d19484d8b91033ff8f43779b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lootToSpawn:
+  - {fileID: 8363719149243772793, guid: 8fcc8ae95cbe7d547ba9e5ad187be870, type: 3}
+  - {fileID: 8238402195873183356, guid: 5afb6a1742ca3f241ae220c184c97080, type: 3}
 --- !u!1001 &1120979796
 PrefabInstance:
   m_ObjectHideFlags: 0
