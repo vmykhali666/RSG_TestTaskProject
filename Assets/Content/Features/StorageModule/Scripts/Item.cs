@@ -1,22 +1,29 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-namespace Content.Features.StorageModule.Scripts {
-    public class Item {
-        public string Name { get; private set; }
-        public Sprite Icon { get; private set; }
-        public int Price { get; private set; }
+namespace Content.Features.StorageModule.Scripts
+{
+    public abstract class Item
+    {
+        public string Name { get; set; }
+        public Sprite Icon { get; set; }
 
-        public Item(string name, Sprite icon, int price) {
+        public float Weight { get; set; }
+        public bool IsNewItem { get; set; }
+
+        public Item(string name, Sprite icon, float weight, bool isNewItem = true)
+        {
             Name = name;
             Icon = icon;
-            Price = price;
+            Weight = weight;
+            IsNewItem = isNewItem;
         }
-    
-        public Item(ItemConfiguration itemConfiguration) {
+
+        public Item(ItemConfiguration itemConfiguration)
+        {
             Name = itemConfiguration.Name;
             Icon = itemConfiguration.Icon;
-            Price = itemConfiguration.Price;
+            Weight = itemConfiguration.Weight;
+            IsNewItem = itemConfiguration.IsNewItem;
         }
     }
 }

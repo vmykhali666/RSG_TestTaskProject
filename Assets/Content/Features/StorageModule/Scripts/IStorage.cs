@@ -6,6 +6,7 @@ namespace Content.Features.StorageModule.Scripts {
         public event Action<Item> OnItemAdded;
         public event Action<Item> OnItemRemoved;
         public List<Item> GetAllItems();
+        public List<T> GetAllItems<T>();
     
         public void AddItem(Item item);
         public void AddItems(List<Item> items);
@@ -14,5 +15,7 @@ namespace Content.Features.StorageModule.Scripts {
         public void RemoveItems(List<Item> items);
 
         public void RemoveAllItems();
+        float GetCurrentCapacity();
+        float GetMaxCapacity();
     }
 }

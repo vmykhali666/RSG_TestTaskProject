@@ -1,6 +1,6 @@
-﻿using Content.Features.AIModule.Scripts;
-using Content.Features.AIModule.Scripts.Entity;
+﻿using Content.Features.AIModule.Scripts.Entity;
 using Content.Features.AIModule.Scripts.Entity.EntityBehaviours;
+using Content.Features.AIModule.Scripts.Entity.MonoEntity;
 using Content.Features.DamageablesModule.Scripts;
 using UnityEngine;
 using Zenject;
@@ -14,8 +14,14 @@ namespace Content.Features.InteractionModule {
             _entityBehaviourFactory = entityBehaviourFactory;
 
         public void Interact(IEntity entity) {
-            AttackEntityBehaviour attackEntityBehaviour = _entityBehaviourFactory.GetEntityBehaviour<AttackEntityBehaviour>();
-            attackEntityBehaviour.SetTarget(GetComponent<IDamageable>());
+            var targetDamageable = GetComponent<IDamageable>();
+            //TODO: player can`t attack itself
+            if (targetDamageable.DamageableType == DamageableType.Player && entity is PlayerMonoEntity) {
+                Debug.Log("Player cannot attack itself");
+                return;
+            }
+            var attackEntityBehaviour = _entityBehaviourFactory.GetEntityBehaviour<AttackEntityBehaviour>();
+            attackEntityBehaviour.SetTarget(targetDamageable);
             entity.SetBehaviour(attackEntityBehaviour);
         }
     }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f556e9e060d481ea200e0c5ee7326a2, type: 3}
+  m_Name: HealableConfiguration
+  m_EditorClassIdentifier: 
+  _itemType: 1
+  _name: Potion
+  _icon: {fileID: 21300000, guid: 16d04bf325803e149b6a22f40bfe8338, type: 3}
+  _weight: 4
+  _isNewItem: 1
+  <HealAmount>k__BackingField: 25
+  <DropChance>k__BackingField: 0.615
+  <BuyPrice>k__BackingField: 20

@@ -4,5 +4,6 @@ namespace Global.Scripts.Generated {
         public const System.String GlobalScene = "GlobalScene"; 
         public const System.String SurfaceScene = "SurfaceScene"; 
         public const System.String DungeonScene = "DungeonScene"; 
+        public const System.String UIScene = "UIScene"; 
     } 
 } 

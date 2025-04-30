@@ -17,6 +17,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 21030576930130470, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
+      propertyPath: _storageSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cf8fe46b3c1e48c98402a7c31d0df08, type: 2}
+    - target: {fileID: 21030576930130470, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
       propertyPath: _entityContext.EntityAnimator
       value: 
       objectReference: {fileID: 1094867714571588053}
@@ -24,6 +28,14 @@ PrefabInstance:
       propertyPath: _entityAnimator
       value: 
       objectReference: {fileID: 1094867714571588053}
+    - target: {fileID: 2662047571111117678, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
+      propertyPath: _maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2662047571111117678, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
+      propertyPath: _currentHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2662047571111117678, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
       propertyPath: _damageableType
       value: 1
@@ -80,7 +92,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Standard_Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 21030576930130470, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -90,6 +103,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8985726670769606566, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2104324160888522534}
+    - targetCorrespondingSourceObject: {fileID: 8985726670769606566, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5943668235216442465}
   m_SourcePrefab: {fileID: 100100000, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
 --- !u!114 &1094867714571588053 stripped
 MonoBehaviour:
@@ -135,3 +151,35 @@ MonoBehaviour:
   _lootToSpawn:
   - {fileID: 8363719149243772793, guid: 8fcc8ae95cbe7d547ba9e5ad187be870, type: 3}
   - {fileID: 8238402195873183356, guid: 5afb6a1742ca3f241ae220c184c97080, type: 3}
+--- !u!114 &-5943668235216442465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294440353413939748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6784af7cab54d81b0598b666411c62e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityContext:
+    <EntityAnimator>k__BackingField: {fileID: 1094867714571588053}
+    <NavMeshAgent>k__BackingField: {fileID: 9179333964592360424}
+    <TargetsFinder>k__BackingField: {fileID: 2991956045580720581}
+--- !u!114 &2991956045580720581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4954206169476977735, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
+  m_PrefabInstance: {fileID: 7873823119194099074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294440353413939748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483f731be11287d40b30b92b11858dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &9179333964592360424 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 1308009765341111914, guid: f153eb3a5790de4468a7fdca9b6052a7, type: 3}
+  m_PrefabInstance: {fileID: 7873823119194099074}
+  m_PrefabAsset: {fileID: 0}

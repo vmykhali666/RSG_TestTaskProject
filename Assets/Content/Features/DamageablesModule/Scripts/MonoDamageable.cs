@@ -1,38 +1,76 @@
 ﻿using System;
-using Content.Features.AIModule.Scripts;
 using Content.Features.InteractionModule;
 using UnityEngine;
 
-namespace Content.Features.DamageablesModule.Scripts {
-    public class MonoDamageable : MonoBehaviour, IDamageable {
-        [SerializeField] private float _health;
+namespace Content.Features.DamageablesModule.Scripts
+{
+    public class MonoDamageable : MonoBehaviour, IDamageable
+    {
+        [SerializeField] private float _currentHealth;
+        [SerializeField] private float _maxHealth;
         [SerializeField] private DamageableType _damageableType;
         [SerializeField] private AttackInteractable _attackInteractable;
-    
+
         public Vector3 Position =>
             transform.position;
+
         public DamageableType DamageableType =>
             _damageableType;
+
         public bool IsActive =>
-            _health > 0;
+            _currentHealth > 0;
+
         public AttackInteractable Interactable =>
             _attackInteractable;
 
-        public event Action OnDamaged;
+        public float MaxHealth
+        {
+            get => _maxHealth;
+            set
+            {
+                if (value > _currentHealth)
+                {
+                    _maxHealth = value;
+                }
+                else
+                {
+                    _maxHealth = value;
+                    _currentHealth = value;
+                }
+            }
+        }
+
+        public float CurrentHealth
+        {
+            get => _currentHealth;
+            set => _currentHealth = value > _maxHealth ? _maxHealth : value;
+        }
+
+        public event Action<float> OnDamaged;
         public event Action OnKilled;
 
-        public void Damage(float damage) {
-            _health -= damage;
-            OnDamaged?.Invoke();
+        public event Action<float, float> OnHealthChanged;
 
-            if (_health > 0)
+        public void Damage(float damage)
+        {
+            _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maxHealth);
+            OnDamaged?.Invoke(damage);
+            OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+            if (_currentHealth > 0)
                 return;
+            Destroyed();
+        }
 
+        public void SetHealth(float health)
+        {
+            CurrentHealth = health;
+            OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        }
+
+        public void Destroyed()
+        {
             OnKilled?.Invoke();
             Destroy(gameObject);
         }
-
-        public void SetHealth(float health) =>
-            _health = health;
     }
 }

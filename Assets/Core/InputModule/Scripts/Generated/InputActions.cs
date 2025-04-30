@@ -37,6 +37,15 @@ namespace Core.InputModule.Generated
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Healing"",
+                    ""type"": ""Button"",
+                    ""id"": ""496514f8-b8fb-45dd-af08-fa9bef22431b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +57,17 @@ namespace Core.InputModule.Generated
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c1fe765-0da9-4fee-a9ec-845a482695ef"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Healing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -636,6 +656,7 @@ namespace Core.InputModule.Generated
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
+            m_Player_Healing = m_Player.FindAction("Healing", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -716,11 +737,13 @@ namespace Core.InputModule.Generated
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Interaction;
+        private readonly InputAction m_Player_Healing;
         public struct PlayerActions
         {
             private @DefaultInputActions m_Wrapper;
             public PlayerActions(@DefaultInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
+            public InputAction @Healing => m_Wrapper.m_Player_Healing;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -733,6 +756,9 @@ namespace Core.InputModule.Generated
                 @Interaction.started += instance.OnInteraction;
                 @Interaction.performed += instance.OnInteraction;
                 @Interaction.canceled += instance.OnInteraction;
+                @Healing.started += instance.OnHealing;
+                @Healing.performed += instance.OnHealing;
+                @Healing.canceled += instance.OnHealing;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -740,6 +766,9 @@ namespace Core.InputModule.Generated
                 @Interaction.started -= instance.OnInteraction;
                 @Interaction.performed -= instance.OnInteraction;
                 @Interaction.canceled -= instance.OnInteraction;
+                @Healing.started -= instance.OnHealing;
+                @Healing.performed -= instance.OnHealing;
+                @Healing.canceled -= instance.OnHealing;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -923,6 +952,7 @@ namespace Core.InputModule.Generated
         public interface IPlayerActions
         {
             void OnInteraction(InputAction.CallbackContext context);
+            void OnHealing(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

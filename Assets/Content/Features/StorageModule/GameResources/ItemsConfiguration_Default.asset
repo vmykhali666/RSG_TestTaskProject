@@ -12,17 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb46bd67a733414399bbef8594e4642a, type: 3}
   m_Name: ItemsConfiguration_Default
   m_EditorClassIdentifier: 
-  _configurations:
-  - ItemType: 1
-    Name: Potion
-    Icon: {fileID: 21300000, guid: 16d04bf325803e149b6a22f40bfe8338, type: 3}
-    Price: 10
-  - ItemType: 2
-    Name: Book
-    Icon: {fileID: 21300000, guid: b30b0f3a78bf00c49a5e792f0ad4856a, type: 3}
-    Price: 20
-  _defaultVisual:
-    ItemType: 1
-    Name: Potion
-    Icon: {fileID: 21300000, guid: 16d04bf325803e149b6a22f40bfe8338, type: 3}
-    Price: 10
+  _itemConfigurations:
+  - {fileID: 11400000, guid: 11f5fa36373ee4388aa5e73a4f44488a, type: 2}
+  - {fileID: 11400000, guid: e8128433026824f3da92f7729fba06ae, type: 2}
+  _defaultItem: {fileID: 11400000, guid: e8128433026824f3da92f7729fba06ae, type: 2}

@@ -13,7 +13,7 @@ namespace Content.Features.AIModule.Scripts.Entity {
         }
 
         private void OnDestroy() {
-            _damageable.OnDamaged -= OnKilled;
+            _damageable.OnKilled -= OnKilled;
         }
 
         private void OnKilled() =>

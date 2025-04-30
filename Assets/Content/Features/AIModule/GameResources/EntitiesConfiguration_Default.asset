@@ -13,28 +13,7 @@ MonoBehaviour:
   m_Name: EntitiesConfiguration_Default
   m_EditorClassIdentifier: 
   _entityDatas:
-  - EntityType: 2
-    StartHealth: 10
-    Damage: 5
-    AttackDistance: 2
-    InteractDistance: 3
-    Speed: 5
-  - EntityType: 1
-    StartHealth: 1000
-    Damage: 10
-    AttackDistance: 2
-    InteractDistance: 3
-    Speed: 5
-  - EntityType: 3
-    StartHealth: 100
-    Damage: 10
-    AttackDistance: 5
-    InteractDistance: 4
-    Speed: 5
-  _defaultEntityData:
-    EntityType: 2
-    StartHealth: 10
-    Damage: 10
-    AttackDistance: 2
-    InteractDistance: 3
-    Speed: 5
+  - {fileID: 11400000, guid: 88570bf4a39264aecbb976b374a04bb1, type: 2}
+  - {fileID: 11400000, guid: 1498e4a0c4ac34b338f437951a6f0fa5, type: 2}
+  - {fileID: 11400000, guid: 353bd7800168840908d677f4ff26b818, type: 2}
+  _defaultEntityData: {fileID: 11400000, guid: 353bd7800168840908d677f4ff26b818, type: 2}

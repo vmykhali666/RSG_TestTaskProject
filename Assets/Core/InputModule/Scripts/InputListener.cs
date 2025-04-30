@@ -3,35 +3,67 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace Core.InputModule {
-    public class InputListener : IInputListener, IInitializable, IDisposable {
+namespace Core.InputModule
+{
+    public class InputListener : IInputListener, IInitializable, IDisposable
+    {
         private const string PLAYER_ACTION_MAP = "Player";
         private const string INTERACTION_ACTION = "Interaction";
+        private const string HEAL_ACTION = "Healing";
         private readonly InputActionAsset _inputActions;
         private InputAction _interactionAction;
+        private InputAction _healAction;
         public event Action<Vector2> OnInteractionPerformed;
         public event Action<Vector2> OnInteractionStarted;
         public event Action<Vector2> OnInteractionCanceled;
 
+        public event Action OnHealPerformed;
+        public event Action OnHealStarted;
+        public event Action OnHealCanceled;
+
         public InputListener(InputActionAsset inputActionAsset) =>
             _inputActions = inputActionAsset;
 
-        public void Initialize() {
+        public void Initialize()
+        {
             _inputActions.Enable();
             _interactionAction = _inputActions.FindActionMap(PLAYER_ACTION_MAP).FindAction(INTERACTION_ACTION);
             _interactionAction.performed += OnInteraction;
             _interactionAction.started += OnInteraction;
             _interactionAction.canceled += OnInteraction;
+
+            _healAction = _inputActions.FindActionMap(PLAYER_ACTION_MAP).FindAction(HEAL_ACTION);
+            _healAction.performed += OnHeal;
+            _healAction.started += OnHeal;
+            _healAction.canceled += OnHeal;
         }
 
-        public void Dispose() {
+        private void OnHeal(InputAction.CallbackContext obj)
+        {
+            if (obj.performed)
+                OnHealPerformed?.Invoke();
+
+            if (obj.started)
+                OnHealStarted?.Invoke();
+
+            if (obj.canceled)
+                OnHealCanceled?.Invoke();
+        }
+
+        public void Dispose()
+        {
             _inputActions.Disable();
             _interactionAction.performed -= OnInteraction;
             _interactionAction.started -= OnInteraction;
             _interactionAction.canceled -= OnInteraction;
+
+            _healAction.performed -= OnHeal;
+            _healAction.started -= OnHeal;
+            _healAction.canceled -= OnHeal;
         }
 
-        public void OnInteraction(InputAction.CallbackContext context) {
+        public void OnInteraction(InputAction.CallbackContext context)
+        {
             if (context.performed)
                 OnInteractionPerformed?.Invoke(Mouse.current.position.ReadValue());
 
@@ -42,43 +74,53 @@ namespace Core.InputModule {
                 OnInteractionCanceled?.Invoke(Mouse.current.position.ReadValue());
         }
 
-        public void OnNavigate(InputAction.CallbackContext context) {
+        public void OnNavigate(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
 
-        public void OnSubmit(InputAction.CallbackContext context) {
+        public void OnSubmit(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
 
-        public void OnCancel(InputAction.CallbackContext context) {
+        public void OnCancel(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
 
-        public void OnPoint(InputAction.CallbackContext context) {
+        public void OnPoint(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
 
-        public void OnClick(InputAction.CallbackContext context) {
+        public void OnClick(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
 
-        public void OnRightClick(InputAction.CallbackContext context) {
+        public void OnRightClick(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
 
-        public void OnMiddleClick(InputAction.CallbackContext context) {
+        public void OnMiddleClick(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
 
-        public void OnScrollWheel(InputAction.CallbackContext context) {
+        public void OnScrollWheel(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
 
-        public void OnTrackedDevicePosition(InputAction.CallbackContext context) {
+        public void OnTrackedDevicePosition(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
 
-        public void OnTrackedDeviceOrientation(InputAction.CallbackContext context) {
+        public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
+        {
             throw new NotImplementedException();
         }
     }

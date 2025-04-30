@@ -3,30 +3,31 @@ using System.Linq;
 using Content.Features.StorageModule.Scripts;
 using UnityEngine;
 
-namespace Content.Features.ShopModule.Scripts {
-    public class Trader : MonoBehaviour {
-        public int SellAllItemsFromStorage(IStorage storage) {
-            int sumOfMoney = 0;
-            foreach (int price in storage.GetAllItems().Select(item => item.Price))
-                sumOfMoney += price;
-
+namespace Content.Features.ShopModule.Scripts
+{
+    public class Trader : MonoBehaviour
+    {
+        public float SellAllItemsFromStorage(IStorage storage)
+        {
+            var sumOfMoney = storage.GetAllItems<SellableItem>().Aggregate(0f, (current, item) => current + item.Price);
             storage.RemoveAllItems();
             Debug.LogError("Recieved " + sumOfMoney);
             return sumOfMoney;
         }
 
-        public int SellItemFromStorage(Item item, IStorage storage) {
+        public float SellItemFromStorage(SellableItem item, IStorage storage)
+        {
             storage.RemoveItem(item);
 
             return item.Price;
         }
 
-        public int SellItemsFromStorage(List<Item> items, IStorage storage) {
-            storage.RemoveItems(items);
+        public float SellItemsFromStorage(List<SellableItem> items, IStorage storage)
+        {
+            storage.RemoveItems(items.Cast<Item>().ToList()); //better to write your own ContravariantList<in T>
 
-            int sumOfMoney = 0;
-            foreach (int price in items.Select(item => item.Price))
-                sumOfMoney += price;
+
+            var sumOfMoney = items.Aggregate(0f, (current, item) => current + item.Price);
 
             return sumOfMoney;
         }
